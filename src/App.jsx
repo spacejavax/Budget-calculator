@@ -10,8 +10,13 @@ function App() {
   Number(targetAmount || 0) - Number(savedAmount || 0),
   0
 )
+
+const moneyAfterExpenses =
+  Number(monthlyIncome || 0) - Numer(monthlyExpenses || 0)
+  0
   return (
     <main>
+      <h1>Mitt sparmål</h1>
       <p className="description">
         Planera ditt sparmål och följ dina framsteg. </p>
       <div className="input-group">
