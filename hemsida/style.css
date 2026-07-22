@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+*{ box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+}
+
+.welcome{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(255, 240, 246);
+    background-image: radial-gradient(
+        circle, 
+        white 3px, 
+        transparent 4px
+    );
+  
+    background-size: 30px 30px;
+
+}
+
+.welcome h1{
+    font-family: "Pacifico", cursive;
+    color: #e8dae0;
+    font-size: 64px;
+    transform: translateY(-180px);
+
+    -webkit-text-stroke: 2px black;
+    paint-order: stroke fill;
+}
