@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chango&display=swap");
 
 *{ box-sizing: border-box;
 }
@@ -22,15 +22,123 @@ body {
     );
   
     background-size: 30px 30px;
+    position: relative;
+    overflow: hidden;
 
 }
 
 .welcome h1{
-    font-family: "Pacifico", cursive;
-    color: #e8dae0;
+    font-family: "Chango", sans-serif;
+    color: #fefbff;
     font-size: 64px;
-    transform: translateY(-180px);
+    transform: translateY(-200px);
 
     -webkit-text-stroke: 2px black;
     paint-order: stroke fill;
+}
+
+.sticker {
+    position: absolute;
+    font-size: 60px
+}
+
+.flower-one {
+    top: 5%;
+    left: 6%;
+    transform: rotate(-20deg);
+}
+
+.flower-two {
+    top: 8%;
+    left: 25%;
+    font-size: 38px;
+    transform: rotate(15deg);
+}
+
+.flower-three {
+    top: 6%;
+    right: 25%;
+    font-size: 45px;
+    transform: rotate(-10deg);
+}
+
+.flower-four {
+    top: 10%;
+    right: 6%;
+    font-size: 65px;
+    transform: rotate(25deg);
+}
+
+
+.flower-five {
+    top: 30%;
+    left: 4%;
+    font-size: 42px;
+    transform: rotate(20deg);
+}
+
+.flower-six {
+    top: 55%;
+    left: 10%;
+    font-size: 65px;
+    transform: rotate(-25deg);
+}
+
+.flower-seven {
+    bottom: 8%;
+    left: 4%;
+    font-size: 48px;
+    transform: rotate(12deg);
+}
+
+
+.flower-eight {
+    top: 32%;
+    right: 5%;
+    font-size: 48px;
+    transform: rotate(-15deg);
+}
+
+
+.flower-nine {
+    top: 58%;
+    right: 9%;
+    font-size: 60px;
+    transform: rotate(20deg);
+}
+
+.flower-ten {
+    right: 3%;
+    bottom: 7%;
+    font-size: 45px;
+    transform: rotate(-20deg);
+}
+
+
+.flower-eleven {
+    bottom: 5%;
+    left: 25%;
+    font-size: 38px;
+    transform: rotate(15deg);
+}
+
+.flower-twelve {
+    bottom: 12%;
+    left: 42%;
+    font-size: 58px;
+    transform: rotate(-10deg);
+}
+
+.flower-thirteen {
+    right: 33%;
+    bottom: 4%;
+    font-size: 40px;
+    transform: rotate(25deg);
+}
+
+.flower-fourteen {
+    right: 18%;
+    bottom: 17%;
+    font-size: 48px;
+    transform: rotate(-15deg);
 }
