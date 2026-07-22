@@ -12,12 +12,12 @@ function App() {
 )
   return (
     <main>
-      <h1>Budgetkalkylator</h1>
-      <p>Planera ditt sparmål och följ dina framsteg.</p>
-
-      <label htmlFor="monthlyIncome">
-        Inkomst per månad
-      </label>
+      <p className="description">
+        Planera ditt sparmål och följ dina framsteg. </p>
+      <div className="input-group">
+        <label htmlFor="monthlyIncome">
+          Inkomst per månad
+        </label>
 
       <input
         id="monthlyIncome"
@@ -27,6 +27,8 @@ function App() {
         value={monthlyIncome}
         onChange={(event) => setMonthlyIncome(event.target.value)}
       />
+
+      </div>
 
       <p>Din månadsinkomst: {monthlyIncome || 0} kr</p>
       <label htmlFor="monthlyExpenses">
@@ -41,6 +43,36 @@ function App() {
       value={monthlyExpenses}
       onChange={(event) => setMonthlyExpenses(event.target.value)}
     />
+    <label htmlFor="targetAmount">
+      Hur mycket vill du spara?
+    </label>
+
+    <input
+    id="targetAmount"
+    type="number"
+    min="0"
+    placeholder="Exempel 1000"
+    value={targetAmount}
+    onChange={(event) => setTargetAmount(event.target.value)}
+    />
+
+    <label htmlFor="savedAmount">
+      Hur mycket har du redan sparat?
+      </label>
+
+    <input
+      id="savedAmount"
+      type="number"
+      min="0"
+      placeholder="Exempel: 1000"
+      value={savedAmount}
+      onChange={(event) => setsavedAmount(event.target.value)}
+    />
+      
+
+    <p className="result">
+      Du har {remainingAmount} kr kvar till ditt sparmål
+    </p>
 
     <p>
       Kvar efter utgifter:{' '}
