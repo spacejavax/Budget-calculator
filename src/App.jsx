@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
-import CoinGame from './CoinGame'
 import './App.css'
+
 
 
 function App() {
@@ -89,7 +89,7 @@ function App() {
 
       <h1>WELCOME!</h1>
       <main className="calculator">
-        <h1 className="calculator-heading">My savings goal</h1>
+        <h2 className="calculator-heading">My savings goal</h2>
       <p className="description">
         Plan your savings goal and follow your progress. </p>
       <div className="input-group">

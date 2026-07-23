@@ -32,7 +32,7 @@ h2 {
   margin-bottom:15px;
   color:#b95678;
   font-size: 40px;
-  text-align: centre;
+  text-align: center;
   text-shadow: 2px 2px #ffe1eb
 }
 
@@ -216,8 +216,6 @@ body {
     font-family: "Chango", sans-serif;
     color: #fefbff;
     font-size: 64px;
-    transform: translateY(-200px);
-    align-items: center;
     paint-order: stroke fill;
 }
 
