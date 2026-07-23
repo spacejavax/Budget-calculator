@@ -5,17 +5,25 @@ import './App.css'
 function App() {
   const [monthlyIncome, setMonthlyIncome] = useState('')
   const [monthlyExpenses, setMonthlyExpenses] = useState('')
-  const [targetAmount, setTargetAmount] = useState('')
+  const [targetAmount, setTargetAmount] = useState(
+    () => localStorage.getItem('targetAmount') || '')
   const [savedAmount, setSavedAmount] = useState('')
-  const remainingAmount = Math.max(
-    Number(targetAmount || 0) - Number(savedAmount || 0),
+  const [savingsHistory, setSavingsHistory] = useState(() => {
+    const savedHistory = localStorage.getItem('savingsHistory')
+    return savedHistory ? JSON.parse(savedHistory) : []})
+
+  const totalSaved = savingHistory.reduce(
+    (total, saving) => total + saving.amount,
     0
-)
+  )
+  
+  const remainingAmount = Math.max(
+    Number(targetAmount || 0) - totalSaved,)
 
   const moneyAfterExpenses =
     Number(monthlyIncome || 0) - Number(monthlyExpenses || 0)
   const goalReached = 
-  Number(targetAmount) > 0 && Number(savedAmount) >= Number(targetAmount)
+  Number(targetAmount) > 0 && totalSaved >= Number(targetAmount)
   const wasGoalReached = useRef(false)
   useEffect(() => { if (goalReached && !wasGoalReached.current) {
       confetti({
@@ -23,11 +31,36 @@ function App() {
         spread: 100,
         origin: {y: 0.6},
         colors: ['#ff8fb1', '#ffc1d4', '#ffc1d4', '#ffffff', '#b7e4c7'],
-      })
+})
     }
 
     wasGoalReached.current = goalReached}, [goalReached])
 
+  useEffect(() => {
+        localStorage.setItem(
+          'savingsHistory',
+          JSON.stringify(savingsHistory)
+        )
+      }, [savingsHistory])
+      useEffect(() => {
+        localStorage.setItem('targetAmount', targetAmount)
+
+      }, [targetAmount])
+
+  function addSaving() {
+    const amount = Number(savedAmount)
+    if (amount <=0) {
+      return
+    }
+    const newSaving = {
+    id: Date.now(),
+    amount: amount,
+    date: new Date().toLocaleDateString('sv-SE'),
+  }
+    setSavingsHistory([...savingsHistory, newSaving])
+    setSavedAmount('')
+  }
+  
   return (
     <main>
       <h1>My savings goal</h1>
@@ -74,10 +107,10 @@ function App() {
     />
   </div>
 
-  <div className="">
+  <div className="input-group">
 
     <label htmlFor="savedAmount">
-      Hur mycket har du redan sparat?
+      How much do you want to add?
       </label>
 
     <input
@@ -86,16 +119,36 @@ function App() {
       min="0"
       placeholder=""
       value={savedAmount}
-      onChange={(event) => setSavedAmount(event.target.value)}
-    />
+      onChange={(event) => setSavedAmount(event.target.value)} />
+      <button type="button" onClick={addSaving}>
+      Add saved money
+    </button>
   </div>
-      
+    {savingsHistory.length > 0 && (
+      <table className="savings-table">
+        <thead>
+          <tr>
+            <th>Datum</th>
+              <th>Insättning</th>
+            </tr>
+          </thead>
+
+          </tbody>
+            {savingsHistory.map((saving) => (
+              <tr key={saving.id}>
+              <td>{saving.date}</td>
+              <td>{saving.amount} kr</td>
+            </tr>
+            ))}
+          </tbody>
+        </table>
+    )}
 
     <p className="result">
-      Du har {remainingAmount} kr kvar till ditt sparmål
+      Total saved: {totalSaved} sek
     </p>
 
-    <p>Kvar efter utgifter: {moneyAfterExpenses} kr </p>
+    <p>You have {remainingAmount} sek left for you savings goal</p>
 
       {goalReached && (
       <div className= "goal-celebration">
@@ -104,6 +157,7 @@ function App() {
         <p>You have reached your savings goal</p>
       </div>
         )}
+
     </main>
   )
 }
