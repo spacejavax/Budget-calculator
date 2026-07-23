@@ -173,8 +173,7 @@ button:hover {
   background:#ee7ca1
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Chango&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 *{ box-sizing: border-box;
 }
 
@@ -197,7 +196,7 @@ body {
   position: relative;
   overflow: hidden;
 
-  background-color: #f3dce5;
+  background-color: #ffbcd5;
 
   background-image:
     radial-gradient(
@@ -213,7 +212,7 @@ body {
 }
 
 .welcome h1{
-    font-family: "Chango", sans-serif;
+    font-family: "Lobster", cursive;
     color: #fefbff;
     font-size: 64px;
     paint-order: stroke fill;
