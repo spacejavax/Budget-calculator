@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import {useEffect, useRef, useState } from 'react'
+import confetti from 'canvas-confetti'
 import './App.css'
 
 function App() {
@@ -13,12 +14,25 @@ function App() {
 
   const moneyAfterExpenses =
     Number(monthlyIncome || 0) - Number(monthlyExpenses || 0)
+  const goalReached = 
+  Number(targetAmount) > 0 && Number(savedAmount) >= Number(targetAmount)
+  const wasGoalReached = useRef(false)
+  useEffect(() => { if (goalReached && !wasGoalReached.current) {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: {y: 0.6},
+        colors: ['#ff8fb1', '#ffc1d4', '#ffc1d4', '#ffffff', '#b7e4c7'],
+      })
+    }
+
+    wasGoalReached.current = goalReached}, [goalReached])
 
   return (
     <main>
-      <h1>Mitt sparmål</h1>
+      <h1>My savings goal</h1>
       <p className="description">
-        Planera ditt sparmål och följ dina framsteg. </p>
+        Plan your savings goal and follow your progress. </p>
       <div className="input-group">
       <label htmlFor="monthlyIncome">Inkomst per månad
       </label>
@@ -82,6 +96,14 @@ function App() {
     </p>
 
     <p>Kvar efter utgifter: {moneyAfterExpenses} kr </p>
+
+      {goalReached && (
+      <div className= "goal-celebration">
+        <span className= "celebration-emoji">🎉</span>
+        <h2>Good job!</h2>
+        <p>You have reached your savings goal</p>
+      </div>
+        )}
     </main>
   )
 }

@@ -119,3 +119,41 @@ button:hover {
   }
 }  
 
+@keyframes celebrationPop {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @keyframes celebrationBounce {
+  from {
+    transform: translateY(0) rotate(-6deg);
+  }
+  to {
+    transform: translateY(-8px) rotate(6deg) }
+  }
+
+.goal-celebration { 
+  margin-top: 24px;
+  padding: 22px;
+  text-align: center;
+  color: #b95678;
+  background: linear-gradient(135deg, #fff0f5, #f0fff5);
+  border: 2px solid #ffc1d4;
+  border-radius: 22px;
+  animation: celebrationPop 0.6s ease-out;
+}
+
+.goal-celebration p {
+  margin: 0;
+}
+
+.celebration-emoji {
+  display: block;
+  font-size: 42px;
+  animation: celebrationBounce 0.8s ease infinite alternate;
+}
