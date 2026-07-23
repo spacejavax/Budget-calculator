@@ -61,10 +61,11 @@ main {
 main::before {
   content: "🎀";
   position: absolute;
-  top: -25px;
-  right: 25px;
+  top: -19px;
+  right: 20px;
   font-size: 45px;
 }
+
 
 .description {
   color: #90606f;
@@ -83,7 +84,7 @@ label {
 input {
   width: 100%;
   padding: 13px 16px;
-  color: #6f4352;
+  color: #a36479;
   background-color: #fff8fb;
   border: 2px solid #ffc7d8;
   border-radius: 14px;
@@ -116,7 +117,7 @@ button {
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(222, 77, 130, 0.32);
+  box-shadow: 0 8px 16px rgba(229, 97, 145, 0.32);
 
 }
 
@@ -164,4 +165,16 @@ button:hover {
   display: block;
   font-size: 42px;
   animation: celebrationBounce 0.8s ease infinite alternate;
+}
+
+.reset-button {
+  color: #b95678;
+  background: #fff;
+  border: 2px solid #ffc1d4;
+  box-shadow: none;
+}
+
+.reset-button:hover {
+  color: white;
+  background:#ee7ca1
 }

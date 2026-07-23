@@ -13,9 +13,7 @@ function App() {
     return savedHistory ? JSON.parse(savedHistory) : []})
 
   const totalSaved = savingsHistory.reduce(
-    (total, saving) => total + saving.amount,
-    0
-  )
+    (total, saving) => total + saving.amount,)
   
   const remainingAmount = Math.max(
     Number(targetAmount || 0) - totalSaved,)
@@ -30,8 +28,7 @@ function App() {
         particleCount: 150,
         spread: 100,
         origin: {y: 0.6},
-        colors: ['#ff8fb1', '#ffc1d4', '#ffc1d4', '#ffffff', '#b7e4c7'],
-})
+        colors: ['#ff8fb1', '#ffc1d4', '#ffc1d4', '#ffffff', '#b7e4c7'],})
     }
 
     wasGoalReached.current = goalReached}, [goalReached])
@@ -39,28 +36,35 @@ function App() {
   useEffect(() => {
         localStorage.setItem(
           'savingsHistory',
-          JSON.stringify(savingsHistory)
-        )
-      }, [savingsHistory])
+          JSON.stringify(savingsHistory))}, [savingsHistory])
       useEffect(() => {
-        localStorage.setItem('targetAmount', targetAmount)
-
-      }, [targetAmount])
+        localStorage.setItem('targetAmount', targetAmount)}, [targetAmount])
 
   function addSaving() {
     const amount = Number(savedAmount)
     if (amount <=0) {
-      return
-    }
+      return}
     const newSaving = {
     id: Date.now(),
     amount: amount,
-    date: new Date().toLocaleDateString('sv-SE'),
-  }
+    date: new Date().toLocaleDateString('sv-SE'),}
     setSavingsHistory([...savingsHistory, newSaving])
+    setSavedAmount('')}
+
+  function startnewgoal() {
+    setTargetAmount('')
     setSavedAmount('')
-  }
+    setSavingsHistory([])
+    wasGoalReached.current = false }
   
+  function resetEverything() {
+    setMonthlyIncome('')
+    setMonthlyExpenses('')
+    setTargetAmount('')
+    setSavingsHistory([])
+    wasGoalReached.current = false }
+  
+
   return (
     <main>
       <h1>My savings goal</h1>
@@ -142,7 +146,7 @@ function App() {
             ))}
           </tbody>
         </table>
-    )}
+)}
 
     <p className="result">
       Total saved: {totalSaved} sek
@@ -154,10 +158,18 @@ function App() {
       <div className= "goal-celebration">
         <span className= "celebration-emoji">🎉</span>
         <h2>Good job!</h2>
-        <p>You have reached your savings goal</p>
+        <p>You have reached your savings goal!</p>
+        <button type="button" onClick={startnewgoal}>
+         New goal: 
+        </button>
       </div>
         )}
-
+    <button
+      type="button"
+      className="reset-button"
+      onClick={resetEverything}
+    > Reset Everything
+    </button>
     </main>
   )
 }
