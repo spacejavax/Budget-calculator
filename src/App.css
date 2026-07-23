@@ -204,16 +204,9 @@ body {
       circle,
       white 4px,
       transparent 5px
-    ),
-    linear-gradient(
-      135deg,
-      #ffd5e5,
-      #f98de7
     );
 
-  background-size:
-    35px 35px,
-    100% 100%;
+    background-size: 35px 35px;
 
   box-shadow:
     inset 0 0 100px rgba(220, 100, 140, 0.15);
@@ -224,8 +217,7 @@ body {
     color: #fefbff;
     font-size: 64px;
     transform: translateY(-200px);
-
-    -webkit-text-stroke: 2px black;
+    align-items: center;
     paint-order: stroke fill;
 }
 

@@ -89,7 +89,7 @@ function App() {
 
       <h1>WELCOME!</h1>
       <main className="calculator">
-        <h2 className="calculator-heading">My savings goal</h2>
+        <h1 className="calculator-heading">My savings goal</h1>
       <p className="description">
         Plan your savings goal and follow your progress. </p>
       <div className="input-group">
