@@ -74,7 +74,7 @@ function App() {
       <p className="description">
         Plan your savings goal and follow your progress. </p>
       <div className="input-group">
-      <label htmlFor="monthlyIncome">Inkomst per månad
+      <label htmlFor="monthlyIncome">Income per month
       </label>
       <input
         id="monthlyIncome"
@@ -87,7 +87,7 @@ function App() {
       </div>
 
       <div className="input-group">
-      <label htmlFor="monthlyExpenses">Utgifter per månad</label>
+      <label htmlFor="monthlyExpenses">Spending per month</label>
 
       <input 
       id="monthlyExpenses"
@@ -101,7 +101,7 @@ function App() {
 
     <div className="input-group">
     <label htmlFor="targetAmount">
-      Hur mycket vill du spara?
+      What is your saving goal?
     </label>
 
     <input
@@ -117,7 +117,7 @@ function App() {
   <div className="input-group">
 
     <label htmlFor="savedAmount">
-      How much do you want to add?
+      How much did you save this month?
       </label>
 
     <input
@@ -131,16 +131,23 @@ function App() {
       Add saved money
     </button>
   </div>
+
+    <p>
+      Money after expenses: {moneyAfterExpenses} kr
+    </p>
+    <p className="result">
+      Total saved: {totalSaved} sek
+    </p>
+     <p>You have {remainingAmount} kr left for you savings goal</p>
     {savingsHistory.length > 0 && (
       <table className="savings-table">
         <thead>
           <tr>
             <th>Date</th>
-              <th>deposit</th>
+              <th>Deposit</th>
             </tr>
           </thead>
-
-          <tbody>
+            <tbody>
             {savingsHistory.map((saving) => (
               <tr key={saving.id}>
               <td>{saving.date}</td>
@@ -149,14 +156,8 @@ function App() {
             ))}
           </tbody>
         </table>
-)}
 
-    <p className="result">
-      Total saved: {totalSaved} sek
-    </p>
-
-    <p>You have {remainingAmount} sek left for you savings goal</p>
-
+    )}
       {goalReached && (
       <div className= "goal-celebration">
         <span className= "celebration-emoji">🎉</span>
