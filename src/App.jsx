@@ -13,7 +13,8 @@ function App() {
     return savedHistory ? JSON.parse(savedHistory) : []})
 
   const totalSaved = savingsHistory.reduce(
-    (total, saving) => total + saving.amount,)
+    (total, saving) => total + saving.amount,
+    0 )
   
   const remainingAmount = Math.max(
     Number(targetAmount || 0) - totalSaved,)
@@ -62,6 +63,8 @@ function App() {
     setMonthlyExpenses('')
     setTargetAmount('')
     setSavingsHistory([])
+    localStorage.removeItem('targetAmount')
+    localStorage.removeItem('savingshistory')
     wasGoalReached.current = false }
   
 
@@ -165,9 +168,7 @@ function App() {
       </div>
         )}
     <button
-      type="button"
-      className="reset-button"
-      onClick={resetEverything}
+      type="button" onClick={resetEverything}
     > Reset Everything
     </button>
     </main>
