@@ -12,7 +12,7 @@ function App() {
     const savedHistory = localStorage.getItem('savingsHistory')
     return savedHistory ? JSON.parse(savedHistory) : []})
 
-  const totalSaved = savingHistory.reduce(
+  const totalSaved = savingsHistory.reduce(
     (total, saving) => total + saving.amount,
     0
   )
