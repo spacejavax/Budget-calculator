@@ -2,6 +2,7 @@ import {useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import './App.css'
 
+
 function App() {
   const [monthlyIncome, setMonthlyIncome] = useState('')
   const [monthlyExpenses, setMonthlyExpenses] = useState('')
@@ -69,6 +70,26 @@ function App() {
   
 
   return (
+  <>
+    <section className="welcome">
+      <span className="sticker flower-one">🌸</span>
+      <span className="sticker flower-two">🌸</span>
+      <span className="sticker flower-three">🌸</span>
+      <span className="sticker flower-four">🌸</span>
+      <span className="sticker flower-five">🌸</span>
+      <span className="sticker flower-six">🌸</span>
+      <span className="sticker flower-seven">🌸</span>
+      <span className="sticker flower-eight">🌸</span>
+      <span className="sticker flower-nine">🌸</span>
+      <span className="sticker flower-ten">🌸</span>
+      <span className="sticker flower-eleven">🌸</span>
+      <span className="sticker flower-twelve">🌸</span>
+      <span className="sticker flower-thirteen">🌸</span>
+      <span className="sticker flower-fourteen">🌸</span>
+
+      <h1>WELCOME!</h1>
+    </section>
+
     <main>
       <h1>My savings goal</h1>
       <p className="description">
@@ -173,7 +194,8 @@ function App() {
     > Reset Everything
     </button>
     </main>
-  )
-}
+  </>
+    )
+  }
 
 export default App
