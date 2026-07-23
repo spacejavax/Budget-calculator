@@ -70,8 +70,7 @@ function App() {
   
 
   return (
-  <>
-    <section className="welcome">
+    <div className="welcome">
       <span className="sticker flower-one">🌸</span>
       <span className="sticker flower-two">🌸</span>
       <span className="sticker flower-three">🌸</span>
@@ -88,10 +87,8 @@ function App() {
       <span className="sticker flower-fourteen">🌸</span>
 
       <h1>WELCOME!</h1>
-    </section>
-
-    <main>
-      <h1>My savings goal</h1>
+      <main className="calculator">
+        <h2 className="calculator-heading">My savings goal</h2>
       <p className="description">
         Plan your savings goal and follow your progress. </p>
       <div className="input-group">
@@ -181,7 +178,7 @@ function App() {
     )}
       {goalReached && (
       <div className= "goal-celebration">
-        <span className= "celebration-emoji">🎉</span>
+        <span className= "celebration-emoji">🌸</span>
         <h2>Good job!</h2>
         <p>You have reached your savings goal!</p>
         <button type="button" onClick={startnewgoal}>
@@ -194,8 +191,8 @@ function App() {
     > Reset Everything
     </button>
     </main>
-  </>
+  </div>
     )
-  }
+}
 
 export default App
