@@ -120,7 +120,7 @@ function App() {
       placeholder=""
       value={savedAmount}
       onChange={(event) => setSavedAmount(event.target.value)} />
-      <button type="button" onClick={addSaving}>
+      <button type="button" onClick={addSaving} disabled={Number(savedAmount) <=0}>
       Add saved money
     </button>
   </div>
@@ -128,12 +128,12 @@ function App() {
       <table className="savings-table">
         <thead>
           <tr>
-            <th>Datum</th>
-              <th>Insättning</th>
+            <th>Date</th>
+              <th>deposit</th>
             </tr>
           </thead>
 
-          </tbody>
+          <tbody>
             {savingsHistory.map((saving) => (
               <tr key={saving.id}>
               <td>{saving.date}</td>

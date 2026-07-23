@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
 @keyframes fadeIn {
   from {
@@ -10,8 +11,21 @@
   }
 }
 
+body {
+  font-family:'Fredoka', sans-serif;
+  color: #b95678; 
+}
 section {
   margin-bottom: 28px;
+}
+
+h1 {
+  margin-top: 0;
+  color: #db668c;
+  text-align: center;
+  font-size: 2.3rem;
+  text-shadow: 2px 2px #ffe1eb;
+
 }
 
 h2 {
@@ -52,15 +66,6 @@ main::before {
   font-size: 45px;
 }
 
-h1 {
-  margin-top: 0;
-  color: #db668c;
-  text-align: center;
-  font-size: 2.3rem;
-  text-shadow: 2px 2px #ffe1eb;
-
-}
-
 .description {
   color: #90606f;
   text-align: center;
@@ -84,6 +89,7 @@ input {
   border-radius: 14px;
   outline: none;
   transition: 0.2s;
+  font-family: inherit;
 }
 
 input:focus {
@@ -97,23 +103,24 @@ button {
   width: 100%;
   margin-top: 22px;
   padding: 13px;
-  color: white;
+  color: rgb(229, 140, 205);
   font-weight: bold;
-  background linear-gradient(135deg, #f38bad, #db668c);
+  background: linear-gradient(135deg, #f38bad, #db668c);
   border: none;
   border-radius: 999px;
-  box-shadow: 0 6px 12px rgba(130, 105, 140, 0.25);
+  box-shadow: 0 6px 12px rgba(105, 84, 113, 0.25);
   transition: 0.2s;
+  font-family: inherit;
 
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(220, 100, 145, 0.32);
+  box-shadow: 0 8px 16px rgba(222, 77, 130, 0.32);
 
 }
 
-@media (mx-width: 600px) {
+@media (max-width: 600px) {
   main {
     padding: 24px 18px;
   }
@@ -128,8 +135,9 @@ button:hover {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
 
-  @keyframes celebrationBounce {
+@keyframes celebrationBounce {
   from {
     transform: translateY(0) rotate(-6deg);
   }
