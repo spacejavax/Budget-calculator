@@ -1,16 +1,31 @@
-# React + Vite
+#### **Supercute budget-calculator + with supercute games**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This budget calculator helps you track your saved money! You can also put up your own saving goal. The data is saved everytime you put in a number. You can reset everything and start from zero too.
 
-Currently, two official plugins are available:
+### How to run the project
+1. Clone the repository to your device
+```sh
+github clone https://github.com/spacejavax/Budget-calculator.git
+```
+2. Install the project's dependencies
+```sh
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+3. Start the development server on `localhost:5173`
+```sh
+npm run dev
+```
+On Windows powershell try 
+```sh
+npm.cmd run dev
 
-## React Compiler
+4. Buld the site to `/dist`
+```sh
+npm run build
+```
+Hope it's kawaii enough for you!
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## AI DISCLOSURE
+I used it to understand CSS, HTML, and Javascript the underlying logic and structure. For coding I asked it to explain the codes it had written (for example a function) and then I tried to test other functions myself.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

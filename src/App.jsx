@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
+import CoinGame from './CoinGame'
 import './App.css'
 
 
