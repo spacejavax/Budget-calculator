@@ -19,7 +19,9 @@ function App() {
     0 )
   
   const remainingAmount = Math.max(
-    Number(targetAmount || 0) - totalSaved,)
+  Number(targetAmount || 0) - totalSaved,
+  0
+  )
 
   const moneyAfterExpenses =
     Number(monthlyIncome || 0) - Number(monthlyExpenses || 0)
@@ -31,7 +33,7 @@ function App() {
         particleCount: 150,
         spread: 100,
         origin: {y: 0.6},
-        colors: ['#ff8fb1', '#ffc1d4', '#ffc1d4', '#ffffff', '#b7e4c7'],})
+        colors: ['#ff8fb1', '#ffc1d4', '#edf7a9', '#ffffff', '#b7e4c7'],})
     }
 
     wasGoalReached.current = goalReached}, [goalReached])
@@ -54,6 +56,12 @@ function App() {
     setSavingsHistory([...savingsHistory, newSaving])
     setSavedAmount('')}
 
+  function undoLastSaving() {
+  setSavingsHistory((currentHistory) => {
+    return currentHistory.slice(0, -1)
+  })
+}
+
   function startnewgoal() {
     setTargetAmount('')
     setSavedAmount('')
@@ -64,9 +72,10 @@ function App() {
     setMonthlyIncome('')
     setMonthlyExpenses('')
     setTargetAmount('')
+    setSavedAmount('')
     setSavingsHistory([])
     localStorage.removeItem('targetAmount')
-    localStorage.removeItem('savingshistory')
+    localStorage.removeItem('savingsHistory')
     wasGoalReached.current = false }
   
 
@@ -88,12 +97,14 @@ function App() {
       <span className="sticker flower-fourteen">🌸</span>
 
       <h1>WELCOME!</h1>
+      <div className="content-layout">
       <main className="calculator">
-        <h2 className="calculator-heading">My savings goal</h2>
+      <h2 className="calculator-heading">My savings goal</h2>
       <p className="description">
         Plan your savings goal and follow your progress. </p>
       <div className="input-group">
-      <label htmlFor="monthlyIncome">Income per month
+      <label htmlFor="monthlyIncome">
+        Income per month
       </label>
       <input
         id="monthlyIncome"
@@ -101,20 +112,21 @@ function App() {
         min="0"
         placeholder=""
         value={monthlyIncome}
-        onChange={(event) => setMonthlyIncome(event.target.value)}
-          /> 
+        onChange={(event) => setMonthlyIncome(event.target.value)} /> 
       </div>
 
       <div className="input-group">
-      <label htmlFor="monthlyExpenses">Spending per month</label>
+      <label htmlFor="monthlyExpenses">
+        Spending per month
+      </label>
 
       <input 
-      id="monthlyExpenses"
-      type="number"
-      min="0"
-      placeholder=""
-      value={monthlyExpenses}
-      onChange={(event) => setMonthlyExpenses(event.target.value)}
+        id="monthlyExpenses"
+        type="number"
+        min="0"
+        placeholder=""
+        value={monthlyExpenses}
+        onChange={(event) => setMonthlyExpenses(event.target.value)}
     />
       </div>
 
@@ -158,25 +170,6 @@ function App() {
       Total saved: {totalSaved} sek
     </p>
      <p>You have {remainingAmount} kr left for you savings goal</p>
-    {savingsHistory.length > 0 && (
-      <table className="savings-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-              <th>Deposit</th>
-            </tr>
-          </thead>
-            <tbody>
-            {savingsHistory.map((saving) => (
-              <tr key={saving.id}>
-              <td>{saving.date}</td>
-              <td>{saving.amount} kr</td>
-            </tr>
-            ))}
-          </tbody>
-        </table>
-
-    )}
       {goalReached && (
       <div className= "goal-celebration">
         <span className= "celebration-emoji">🌸</span>
@@ -187,13 +180,41 @@ function App() {
         </button>
       </div>
         )}
-    <button
-      type="button" onClick={resetEverything}
+      <div className="button-group">
+        <button type="button" onClick={undoLastSaving}
+        disabled={savingsHistory.length == 0}
+        >
+          Undo last saving
+        </button>
+
+    <button type="button" onClick={resetEverything}
     > Reset Everything
     </button>
+    </div>
     </main>
+
+    <aside className="history-panel">
+      <h2>Savings histor</h2>
+      <table className="savings-table">
+        <thead>
+          <tr>
+        </thead>
+        <tbody>
+          {savingsHistory.map((saving) => (
+            <tr key={saving.id}>
+              <td>{saving.date}</td>
+              <td>{saving.amount} kr</td>
+            </td>
+          ))}
+        </tbody>
+      </table>
+
+      {savingsHistory.length == 0 && (<p>No savings added yet</p>)}
+    </aside>
   </div>
-    )
+
+  </div>
+  )
 }
 
-export default App
+export default App 
