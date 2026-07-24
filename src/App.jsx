@@ -182,7 +182,7 @@ function App() {
         )}
       <div className="button-group">
         <button type="button" onClick={undoLastSaving}
-        disabled={savingsHistory.length == 0}
+        disabled={savingsHistory.length === 0}
         >
           Undo last saving
         </button>
@@ -194,14 +194,17 @@ function App() {
     </main>
 
     <aside className="history-panel">
-      <h2>Savings histor</h2>
+      <h2>Savings history</h2>
       <table className="savings-table">
         <thead>
           <tr>
+            <th>Date</th>
+            <th>Deposit</th>
+          </tr>
         </thead>
         <tbody>
           {savingsHistory.map((saving) => (
-            <tr key={saving.id}>
+            <td key={saving.id}>
               <td>{saving.date}</td>
               <td>{saving.amount} kr</td>
             </td>
