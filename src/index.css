@@ -11,11 +11,17 @@ body {
   font-family: "Trebuchet MS", 'Times New Roman', Times, serif;
 
 background-color: white;
-background-image:
-  linear-gradient(rgba(192, 70, 106, 0.28) 50%, transparent 50%);
-  linear-gradient(90deg,rgba(22, 190, 210, 0.28) 50%, transparent 50%
 
+background-image:
+  linear-gradient(
+    rgba(192, 70, 106, 0.28) 50%,
+    transparent 50%
   ),
+  linear-gradient(
+    90deg,
+    rgba(22, 190, 210, 0.28) 50%,
+    transparent 50%
+  );
 background-size:80px 80px;
 }
 
