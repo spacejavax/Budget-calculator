@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -173,7 +173,6 @@ button:hover {
   background:#ee7ca1
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 *{ box-sizing: border-box;
 }
 

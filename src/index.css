@@ -18,5 +18,8 @@ background-image:
   ),
 background-size: 80px 80px;
 }
-#root {width: 100%; min-height; 100vh padding: 50px 20px;
+#root {
+  width: 100%; 
+  min-height: 100vh
+  padding: 50px 20px;
 }
