@@ -7,19 +7,20 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  color: #6f4b56;
+  color: #cc5579;
   font-family: "Trebuchet MS", 'Times New Roman', Times, serif;
 
-background: color #fff4f7;
+background-color: white;
 background-image:
-  linear-gradient(rgba(255, 190, 210, 0.28) 50%, transparent 50%),
-  linear linear-gradient(90deg,rgba(22, 190, 210, 0.28) 50%, transparent 50%
+  linear-gradient(rgba(192, 70, 106, 0.28) 50%, transparent 50%);
+  linear-gradient(90deg,rgba(22, 190, 210, 0.28) 50%, transparent 50%
 
   ),
-background-size: 80px 80px;
+background-size:80px 80px;
 }
+
 #root {
   width: 100%; 
-  min-height: 100vh
+  min-height: 100vh;
   padding: 50px 20px;
 }
