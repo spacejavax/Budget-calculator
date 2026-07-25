@@ -31,4 +31,4 @@ useEffect(() => {
             })
             }, 50)
             return () => clearInterval(gameLoop)
-        }, [])
+        }, [])}
