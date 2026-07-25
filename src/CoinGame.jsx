@@ -70,18 +70,25 @@ useEffect(() => {
 
 return (
     <div className="coin-game">
-      <div className="game-stats">
-        <p>Score: {score}</p>
-        <p>Lives: {lives}</p>
-      </div>
-   <div 
-    className="game-area"
+       <div className="game-area"
     onMouseMove={handleMouseMove}
-  >
+    >
+      <div className="game-stats">
+        <div className="stat-box">
+          ⭐ Score: {score}
+          </div>
+    
+          <div className="stat-box life-hearts">
+          {'❤️'.repeat(lives)}
+        </div>
+   </div>
+
     {gameover ? (
       <div className="game-over">
         <h2>Game Over!</h2>
-        <p>Your score: {score}</p>
+        <p> className="final-score" >
+          Your score: {score}
+          </p>
         <button type="button" onClick={restartGame}>
         Play again
         </button>
@@ -106,12 +113,14 @@ return (
         left: `${playerX}%`,
       }}
     >
-      🌸
+      🐷
     </div>
     </>
    )}
+   <div className="grass"></div>
   
   </div>
+
   </div>
 )
 }
