@@ -86,7 +86,7 @@ return (
     {gameover ? (
       <div className="game-over">
         <h2>Game Over!</h2>
-        <p> className="final-score" >
+        <p className="final-score" >
           Your score: {score}
           </p>
         <button type="button" onClick={restartGame}>
