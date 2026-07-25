@@ -215,7 +215,16 @@ function App() {
   </table>
     </aside>
   </div>
-
+<div className="game-section">
+  {goalReached ? ( //is the goal reached?
+    <CoinGame /> // true
+  ) : (
+    <div className="game-locked">
+      <span className="lock-icon">🔒</span>
+    <p>Reach your savings goal to unlock the game!</p>
+    </div>
+  )}
+</div>
   </div>
   )
 }
