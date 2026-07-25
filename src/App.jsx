@@ -96,8 +96,10 @@ function App() {
       <span className="sticker flower-thirteen">🌸</span>
       <span className="sticker flower-fourteen">🌸</span>
 
-      <h1>WELCOME!</h1>
+     
       <div className="content-layout">
+      <div className="calculator-column">
+      <h1>WELCOME!</h1>
       <main className="calculator">
       <h2 className="calculator-heading">My savings goal</h2>
       <p className="description">
@@ -148,7 +150,7 @@ function App() {
   <div className="input-group">
 
     <label htmlFor="savedAmount">
-      How much did you save this month?
+    How much did you save this month?
       </label>
 
     <input
@@ -178,8 +180,7 @@ function App() {
         <button type="button" onClick={startnewgoal}>
          New goal: 
         </button>
-      </div>
-        )}
+      </div>)}
       <div className="button-group">
         <button type="button" onClick={undoLastSaving}
         disabled={savingsHistory.length === 0}
@@ -192,27 +193,25 @@ function App() {
     </button>
     </div>
     </main>
+    </div>
 
     <aside className="history-panel">
-      <h2>Savings history</h2>
       <table className="savings-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Deposit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {savingsHistory.map((saving) => (
-            <td key={saving.id}>
-              <td>{saving.date}</td>
-              <td>{saving.amount} kr</td>
-            </td>
-          ))}
-        </tbody>
-      </table>
-
-      {savingsHistory.length == 0 && (<p>No savings added yet</p>)}
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Deposit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {savingsHistory.map((saving) => (
+      <tr key={saving.id}>
+        <td>{saving.date}</td>
+        <td>{saving.amount} kr</td>
+      </tr>
+    ))}
+  </tbody>
+  </table>
     </aside>
   </div>
 

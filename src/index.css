@@ -7,7 +7,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  color: #cc5579;
+  color: #f9f1f3;
   font-family: "Trebuchet MS", 'Times New Roman', Times, serif;
 
 background-color: white;
@@ -19,7 +19,7 @@ background-image:
   ),
   linear-gradient(
     90deg,
-    rgba(22, 190, 210, 0.28) 50%,
+    rgba(240, 192, 213, 0.28) 50%,
     transparent 50%
   );
 background-size:80px 80px;

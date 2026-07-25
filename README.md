@@ -33,8 +33,8 @@ Our project is a cute budget calculator. You can enter income, expenses, saved m
 ## Programming languages
 Until now we have used css, html and javascript!
 
-## How it was made
-First we created a react project using vite. I worked on the budget calc, while my friend worked on the background. I started with creating functions for saved, expenses, target amount, saved history, total saved, and remaining amount. To keep track of the values that holds the numbers I used react state(useState). To store information I used localstorage. 
+## Proccess and how to use it
+First we created a react project using vite. I worked on the budget calc, while my friend worked on the background. I started with creating functions for saved, expenses, target amount, saved history, total saved, and remaining amount. To keep track of the values that holds the number I used react state(useState). To store information I used localstorage. The remaining amount of savings is the target amount - total amount. After the goal is reached, confetti shows up (Imported from canva confetti.) You can then start a new goal if you want. Adding the wrong number by mistake is not a problem! There is a undo last saving function, or if you want to delete everything in one go; click reset everything. Then I created inputs for every question. Also onClick enables you to click on the add saving, new goal etc. buttons. Lastly I copied my friends code for the background into my own code (mistake lol). I also worked on the app.css as I coded app.jsx. AI gave many nice tips on how to make it look super cute. 
 
 
 ## Challenges
