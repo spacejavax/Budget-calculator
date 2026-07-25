@@ -216,19 +216,18 @@ function App() {
     </aside>
   </div>
 <div className="game-section">
-  {goalReached ? ( //is the goal reached?
-  <div className = "unlocked-games">
+  {goalReached ? ( 
+  <div className= "unlocked-games">
     <CoinGame /> 
 
-    <iframe 
-      src = "/game/index.html"
-      title = "Snake"
-      width = "400"
-      height = "400"
-      style = {{border:"none"}}
+    <iframe
+      src="/game/index.html"
+      title="snake"
+      width="400"
+      height="400"
+      style={{border:"none"}}
     />
   </div>
-    
   ) : (
     <div className="game-locked">
       <span className="lock-icon">🔒</span>
