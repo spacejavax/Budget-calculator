@@ -8,6 +8,7 @@ const [coiny, setcoiny] = useState(0)
 const [lives, setlives] = useState(3)
 const [score, setscore] = useState(0)
 const [gameover, setgameover] = useState(false)
+const [coinvisible, setcoinvisible] = useState(true)
 
 // The players position; can move with mouse
 function handleMouseMove(event) {
@@ -19,30 +20,50 @@ function handleMouseMove(event) {
 }
 
 useEffect(() => {
-    const gameLoop = setInterval (() => {
-        setcoiny((currentY) => {
-            const hasReachedBottom = currentY > 90
-            if (hasReachedBottom) {
-                const randomX = Math.floor(Math.random() * 80) + 10 //+ 10 bc interval should be from 10-90, preventing the coin to exist almost outside the game area
-                setcoinx(randomX)
-                return 0
-            }
-                return currentY + 2
-            })
-            }, 50)
-            return () => clearInterval(gameLoop)
-        }, [])
+    if (gameover || !coinvisible) {
+      return
+    }
+    const gameLoop = setInterval(() => {
+      setcoiny((currenty) => currenty + 2)
+    }, 50)
+    return() => clearInterval(gameLoop)
+  }, [gameover, coinvisible])
+
+  useEffect(() => {
+    if (coiny < 90 || gameover || !coinvisible) {
+      return
+    }
+  const horizontalDistance = Math.abs(coinx - playerX)
+  const coinCaught = horizontalDistance < 10
+
+  if (coinCaught) {
+    setscore((currentScore) => currentScore + 1)
+    setcoinvisible(false)
+  } else {
+    setlives((currentLives) => currentLives -1)
+  }
+  setTimeout(() => {
+    setcoinx(currentx.random)
+    setcoiny(0)
+    setcoinvisible(true)
+     setcoinx(Math.floor(Math.random() * 80) + 10)
+  setcoiny(0)
+}, [coiny, coinx, playerX, gameover, coinvisible])
+
+  }
+
 return (
     <div 
     className="game-area"
     onMouseMove={handleMouseMove}
   >
     <div
-      className="coin"
+    {coinvisible && (
+    className="coin"
       style={{
         left: `${coinx}%`,
         top: `${coiny}%`,
-      }}
+    }}
     >
       🪙
     </div>
