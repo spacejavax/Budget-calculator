@@ -30,7 +30,7 @@ useEffect(() => {
   }, [gameover, coinvisible])
 
   useEffect(() => {
-    if (coiny < 90 || gameover || !coinvisible) {
+    if (coiny < 80 || gameover || !coinvisible) {
       return
     }
   const horizontalDistance = Math.abs(coinx - playerX)
