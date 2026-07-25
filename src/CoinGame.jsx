@@ -31,14 +31,14 @@ useEffect(() => {
             })
             }, 50)
             return () => clearInterval(gameLoop)
-        }, [])}
+        }, [])
 return (
     <div 
-    OnMouseMove={handleMouseMove}
+    onMouseMove={handleMouseMove}
     style={{
         width: '100%',
         height: '400px',
-        backgroundColor: '#f965be'
+        backgroundColor: '#f965be',
         position: 'relative',
         overflow: 'hidden',
         cursor: 'none'
@@ -70,5 +70,6 @@ return (
     </div>
   </div>
 )
+}
 
-)
+export default CoinGame
