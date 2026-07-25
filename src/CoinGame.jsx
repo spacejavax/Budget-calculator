@@ -34,7 +34,7 @@ useEffect(() => {
       return
     }
   const horizontalDistance = Math.abs(coinx - playerX)
-  const coinCaught = horizontalDistance < 10
+  const coinCaught = horizontalDistance < 15
 
   if (coinCaught) {
     setscore((currentScore) => currentScore + 1)
@@ -43,7 +43,7 @@ useEffect(() => {
     setcoinx(Math.floor(Math.random() * 80) + 10)
     setcoiny(0)
     setcoinvisible(true)
-   }, 300)
+   }, 1000)
   } else {
     setlives((currentLives) => currentLives - 1)
     setcoiny(0)
@@ -74,7 +74,7 @@ return (
         left: `${playerX}%`,
       }}
     >
-      (˶˃ ᵕ ˂˶)
+      🌸
     </div>
   </div>
 )
