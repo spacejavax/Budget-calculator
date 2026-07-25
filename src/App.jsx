@@ -134,7 +134,7 @@ function App() {
 
     <div className="input-group">
     <label htmlFor="targetAmount">
-      What is your saving goal?
+    What is your saving goal?
     </label>
 
     <input
@@ -189,7 +189,7 @@ function App() {
         </button>
 
     <button type="button" onClick={resetEverything}
-    > Reset Everything
+    > Reset everything
     </button>
     </div>
     </main>
