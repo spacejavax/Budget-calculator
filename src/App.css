@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -12,8 +11,9 @@
 }
 
 body {
-  font-family:'Fredoka', sans-serif;
-  color: #ab335d; 
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  color: #ab335d;
 }
 section {
   margin-bottom: 28px;
@@ -176,11 +176,6 @@ button:hover {
 *{ box-sizing: border-box;
 }
 
-
-body {
-    margin: 0;
-}
-
 .welcome {
   min-height: 100vh;
 
@@ -331,6 +326,29 @@ body {
   overflow: hidden;
 }
 
+.game-stats {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 14px;
+  z-index: 5;
+}
+
+.stat-box {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ff9fc4;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 #df7fa4;
+
+  color: #a94370;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .savings-table {
   width: 100%;
   border-collapse: collapse;
@@ -434,7 +452,99 @@ body {
   position: absolute;
   bottom: 20px;
   font-size: 40px;
-  color: white;
   transform: translateX(-50%);
 }
 
+.grass {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 26px;
+  background: linear-gradient(
+    to bottom,
+     #d8f5bd,
+    #a8df91
+  );
+
+  border-top: 4px solid #e9ffd7;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.grass::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+
+  background: radial-gradient(
+    circle at 8px 14px,
+    #bceaa5 8px,
+    transparent 9px
+  );
+
+  background-size: 16px 14px;
+}
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 260px;
+  padding: 25px;
+
+  background: #fff5fa;
+  border: 4px solid #ff91bd;
+  border-radius: 16px;
+  box-shadow: 0 8px 0 #d96b98;
+
+  text-align: center;
+  z-index: 10;
+}
+
+.game-over h2 {
+  margin: 0 0 10px;
+  color: #c8477e;
+}
+
+.final-score {
+  margin: 10px 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #a94370;
+}
+
+/* Rectangular restart button */
+.restart-button {
+  width: auto;
+  margin-top: 0;
+  padding: 10px 22px;
+  background: #ff8fbb;
+  color: white;
+  border: 2px solid #d75d8e;
+  border-radius: 7px;
+  box-shadow: 0 4px 0 #bd4d79;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background: #ff77aa;
+  transform: translateY(-1px);
+}
+
+.restart-button:active {
+  box-shadow: 0 2px 0 #bd4d79;
+  transform: translateY(2px);
+}
+
+.life-hearts {
+  color: #f0528a;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
