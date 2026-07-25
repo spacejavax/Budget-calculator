@@ -45,15 +45,19 @@ useEffect(() => {
     setcoinvisible(true)
    }, 1000)
   } else {
-    setlives((currentLives) => currentLives - 1)
+    setlives((currentLives) => currentLives - 1, 0)
     setcoiny(0)
      setcoinx(Math.floor(Math.random() * 80) + 10)}
 }, [coiny, coinx, playerX, gameover, coinvisible])
 
 
 return (
-    <div 
-    className="game-area"
+    <div className="coin-game">
+      <div className="game-stats">
+        <p>Score: {score}</p>
+        <p>Lives: {lives}</p>
+      </div>
+   <div className="game-area"
     onMouseMove={handleMouseMove}
   >
     {coinvisible && (
@@ -76,6 +80,7 @@ return (
     >
       🌸
     </div>
+  </div>
   </div>
 )
 }

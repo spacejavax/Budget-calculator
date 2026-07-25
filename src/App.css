@@ -433,6 +433,8 @@ body {
 .player {
   position: absolute;
   bottom: 20px;
-  font-size: 20px;
+  font-size: 40px;
   color: white;
+  transform: translateX(-50%);
 }
+
