@@ -54,6 +54,12 @@ function App() {
     id: Date.now(),
     amount: amount,
     date: new Date().toLocaleDateString('sv-SE'),}
+    const newSaving2 = {
+      id: Date.now(),
+      amount: amount,
+      date: new Date().toLocaleDateString(`sv-SE`),
+      moneyAfterExenses: moneyAfterExpenses,
+    }
     setSavingsHistory([...savingsHistory, newSaving])
     setSavedAmount('')}
 
@@ -201,7 +207,8 @@ function App() {
   <thead>
     <tr>
       <th>Date</th>
-      <th>Deposit</th>
+      <th>Saved</th>
+      <th>After Expenses</th>
     </tr>
   </thead>
   <tbody>
