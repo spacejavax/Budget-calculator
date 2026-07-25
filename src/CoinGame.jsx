@@ -1,32 +1,15 @@
-function CoinGame() {
-    return(
-        <section className="coin-game">
-<<<<<<< Updated upstream
-        <h2>Catch</h2>
-=======
-        <h2>Catch the Coins</h2>
+import {useEffect, useState} from 'react'
 
-        <p>Points: 0</p>
-        <p>Lives: ❤️❤️❤️</p>
-        <div className="game-area">
-            <div className="coin">🪙</div>
-            <div className="player">🌸</div>
-        </div>
->>>>>>> Stashed changes
-        </section>
-    )
-}
 
-function CoinGame()
-    const[player1, setplayer1] = useState(50)
+// All variables needed in the game
+const [playerx, set playerx] = useState(50)
+const [coinx, setcoinx] = useState(50)
+const [coiny, setcoiny] = useState(0)
+const [lives, setlives] = useState(3)
+const [score, setscore] = useState(0)
+const [gameover, setgameover] = useState(false)
 
-    function moveLeft() {
-        setplayer1((currentPosition) =>
-            Math.max(currentPosition - 10, 5)) }
-    function moveright() {
-        setplayer1((currentPosition) =>
-        Math.min(currentPosition + 10, 95))
-    }
+// The players position 
+function moveLeft() 
+    setplayerx((currentx)) => Math.max(currentx - 10, 5)
 
-    return (
-       
