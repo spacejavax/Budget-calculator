@@ -39,18 +39,17 @@ useEffect(() => {
   if (coinCaught) {
     setscore((currentScore) => currentScore + 1)
     setcoinvisible(false)
-  } else {
-    setlives((currentLives) => currentLives -1)
-  }
-  setTimeout(() => {
-    setcoinx(currentx.random)
+    setTimeout(() => {
+    setcoinx(Math.floor(Math.random() * 80) + 10)
     setcoiny(0)
     setcoinvisible(true)
-     setcoinx(Math.floor(Math.random() * 80) + 10)
-  setcoiny(0)
+   }, 300)
+  } else {
+    setlives((currentLives) => currentLives - 1)
+    setcoiny(0)
+     setcoinx(Math.floor(Math.random() * 80) + 10)}
 }, [coiny, coinx, playerX, gameover, coinvisible])
 
-  }
 
 return (
     <div 
