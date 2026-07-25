@@ -50,6 +50,17 @@ useEffect(() => {
     setcoiny(0)
     setcoinx(Math.floor(Math.random() * 80) + 10)}},
 [coiny, coinx, playerX, gameover, coinvisible])
+
+  function restartGame() {
+    setplayerX(50)
+    setcoinvisible(Math.floor(Math.random() * 80) + 10)
+    setcoiny(0)
+    setlives(3)
+    setscore(0)
+    setgameover(false)
+    setcoinvisible(true)
+  }
+
  useEffect(() => {
     if (lives === 0) {
     console.log("Game Over!") 
@@ -57,16 +68,26 @@ useEffect(() => {
     }
   }, [lives])
 
-
 return (
     <div className="coin-game">
       <div className="game-stats">
         <p>Score: {score}</p>
         <p>Lives: {lives}</p>
       </div>
-   <div className="game-area"
+   <div 
+    className="game-area"
     onMouseMove={handleMouseMove}
   >
+    {gameover ? (
+      <div className="game-over">
+        <h2>Game Over!</h2>
+        <p>Your score: {score}</p>
+        <button type="button" onClick={restartGame}>
+        Play again
+        </button>
+        </div>
+         ) : (
+        <>
     {coinvisible && (
    <div
     className="coin"
@@ -87,6 +108,9 @@ return (
     >
       🌸
     </div>
+    </>
+   )}
+  
   </div>
   </div>
 )
