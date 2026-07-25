@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -144,7 +144,7 @@ button:hover {
   margin-top: 24px;
   padding: 22px;
   text-align: center;
-  color: #b95678;
+  color: #ed8eaf;
   background: linear-gradient(135deg, #fffeff, #f3a1ce);
   border: 2px solid #ffc1d4;
   border-radius: 22px;
@@ -173,7 +173,6 @@ button:hover {
   background:#ee7ca1
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 *{ box-sizing: border-box;
 }
 
@@ -212,10 +211,12 @@ body {
 }
 
 .welcome h1{
-    font-family: "Lobster", cursive;
+    font-family: "Fredoka", cursive;
     color: #fefbff;
-    font-size: 64px;
+    font-size: 100px;
     paint-order: stroke fill;
+   
+
 }
 
 .sticker {
@@ -236,12 +237,6 @@ body {
     transform: rotate(15deg);
 }
 
-.flower-three {
-    top: 6%;
-    right: 25%;
-    font-size: 45px;
-    transform: rotate(-10deg);
-}
 
 .flower-four {
     top: 10%;
@@ -322,4 +317,122 @@ body {
     bottom: 17%;
     font-size: 48px;
     transform: rotate(-15deg);
+}
+
+.game-area {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  max-width: 100%;
+  margin: 20px auto;
+  background-color: #fff0f6;
+  border: 3px solid #ffb6cc;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.savings-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.savings-table th,
+.savings-table td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #d986a3;
+}
+
+.savings-table th {
+  color: white;
+  background: #e77da1;
+}
+
+.savings-table td {
+  background: #fff8fb;
+}
+
+.content-layout {
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.content-layout main {
+  margin: 0;
+}
+
+.savings-table tbody tr:nth-child(even) td {
+  background: #ffeaf2;
+}
+
+.savings-table tbody tr:hover td {
+  background: #ffdce8;
+}
+
+.calculator-column {
+  width: 600px;
+  max-width: 600px;
+  flex-shrink: 0;
+}
+
+.calculator-column .calculator {
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+}
+
+.calculator-column h1 {
+  margin: 0 0 25px;
+  text-align: center;
+}
+
+.history-panel {
+  margin-top: 150px;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.game-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.game-locked {
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 0.5rem;
+}
+
+.lock-icon {
+  font-size: 32px;
+}
+
+.coin {
+  position: absolute;
+  font-size: 35px;
+}
+
+.player {
+  position: absolute;
+  bottom: 20px;
+  font-size: 20px;
+  color: white;
 }
