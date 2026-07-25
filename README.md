@@ -48,9 +48,9 @@ It also hard to keep track of all variables I had defined, when I tried to write
 I used it to understand CSS, HTML, and Javascript the underlying logic and structure.
 
 ## Screenshots!!!
-1. ![alt text](<Skärmbild 2026-07-24 190739.png>)
+1. ![alt text](<Skärmbild 2026-07-25 025118.png>)
 2. ![alt text](<Skärmbild 2026-07-25 025132.png>) 
-3. ![alt text](<Skärmbild 2026-07-25 025118.png>)
+3. ![alt text](<Skärmbild 2026-07-24 190739.png>)
 
 ## Demolink
 https://budget-calculator-topaz.vercel.app/
