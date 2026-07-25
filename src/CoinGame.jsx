@@ -56,8 +56,8 @@ return (
     className="game-area"
     onMouseMove={handleMouseMove}
   >
-    <div
     {coinvisible && (
+   <div
     className="coin"
       style={{
         left: `${coinx}%`,
@@ -66,6 +66,7 @@ return (
     >
       🪙
     </div>
+    )}
 
     <div
       className="player"
