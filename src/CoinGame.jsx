@@ -32,3 +32,43 @@ useEffect(() => {
             }, 50)
             return () => clearInterval(gameLoop)
         }, [])}
+return (
+    <div 
+    OnMouseMove={handleMouseMove}
+    style={{
+        width: '100%',
+        height: '400px',
+        backgroundColor: '#f965be'
+        position: 'relative',
+        overflow: 'hidden',
+        cursor: 'none'
+    }}
+    >
+        <div
+        style={{
+            position: 'absolute',
+            left: `${coinx}%`,
+            top: `${coiny}%`,
+            fontSize: '24px',
+            transform:'translate(-50%, -50%)'
+
+        }}
+        >
+        🪙   
+        </div>
+        <div
+      style={{
+        position: 'absolute',
+        left: `${playerX}%`,
+        bottom: '20px',
+        fontSize: '20px',
+        transform: 'translateX(-50%)',
+        color: 'white'
+      }}
+    >
+      (˶˃ ᵕ ˂˶)
+    </div>
+  </div>
+)
+
+)
