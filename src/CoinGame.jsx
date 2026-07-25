@@ -45,10 +45,17 @@ useEffect(() => {
     setcoinvisible(true)
    }, 1000)
   } else {
-    setlives((currentLives) => currentLives - 1, 0)
+    setlives((currentLives) => Math.max(currentLives - 1, 0))
+  
     setcoiny(0)
-     setcoinx(Math.floor(Math.random() * 80) + 10)}
-}, [coiny, coinx, playerX, gameover, coinvisible])
+    setcoinx(Math.floor(Math.random() * 80) + 10)}},
+[coiny, coinx, playerX, gameover, coinvisible])
+ useEffect(() => {
+    if (lives === 0) {
+    console.log("Game Over!") 
+    setgameover(true)
+    }
+  }, [lives])
 
 
 return (
@@ -84,5 +91,6 @@ return (
   </div>
 )
 }
+
 
 export default CoinGame
