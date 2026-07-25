@@ -4,8 +4,10 @@ import random
 pygame.init()
 
 font = pygame.font.SysFont('cooperblack', 30)
+smallfont = pygame.font.SysFont('cooperblack', 20)
 radius = 10
 screen = pygame.display.set_mode((400, 400))
+replay = pygame.Rect(55, 260, 300, 50)
 
 size = 15
 
@@ -14,6 +16,7 @@ snake = [pygame.Rect(10, 200, size, size)]
 darkpink = (197, 61, 105)
 white = (255, 255, 255)
 running = True
+over = False 
 
 clock = pygame.time.Clock()
 apple = pygame.Rect(random.randint(20, 380), random.randint(20, 380), 5, 5)
@@ -45,7 +48,14 @@ while running:
     elif keys[pygame.K_DOWN]:
         directionx = 0
         directiony = 1
-
+    elif event.type == pygame.MOUSEBUTTONDOWN and replay:
+        snake = [pygame.Rect(10, 200, size, size)]
+        apple = pygame.Rect((random.randint(20, 380), random.randint(20, 380),10, 10))
+        directionx = 1
+        directiony = 0
+        points = 0
+        over = False
+    
     
     oldposition = []
     
@@ -67,17 +77,26 @@ while running:
 
 
     if snake[0].left <= 0 or snake[0].right >= 400 or snake[0].top <= 0 or snake[0].bottom >= 400:
-        running = False
+        over = True
     
     screen.fill((255, 197, 211))
 
-    pygame.draw.circle(screen, darkpink, apple.center, 5)
+    if over == True:
+        lost = font.render(f"YOU LOST!!", True, darkpink)
+        replaytext = smallfont.render("TRY AGAIN PLEASE", True, darkpink)
 
-    for i in snake:
-        pygame.draw.rect(screen, white, i)
+        pygame.draw.rect(screen, white, replay, border_radius=10)
+
+        screen.blit(lost, lost.get_rect(center=(200, 200)))
+        screen.blit(replaytext, replaytext.get_rect(center=replay.center))
+
+    else:
+        pygame.draw.circle(screen, darkpink, apple.center, 5)
+
+        for i in snake:
+            pygame.draw.rect(screen, white, i)
 
     clock.tick(25)
     pygame.display.flip()
-
-
-pygame.quit()
+ 
+pygame.quit()  
