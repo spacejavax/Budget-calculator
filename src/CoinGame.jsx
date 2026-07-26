@@ -94,13 +94,15 @@ function CoinGame() {
         item.x - playerX
       )
 
-      const touchingPlayer =
-        horizontalDistance < 15
+      const touchingPlayer = horizontalDistance < 15
 
-      if (item.type === 'coin' && touchingPlayer) {
+      if (item.type === 'coin') {
+        if(touchingPlayer) {
         scoreAdded = scoreAdded + 1
+      } else {
+        livesLost = livesLost + 1
       }
-
+    }
       if (item.type === 'bomb' && touchingPlayer) {
         livesLost = livesLost + 1
       }
