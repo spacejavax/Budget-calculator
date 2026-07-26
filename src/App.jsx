@@ -177,7 +177,7 @@ function App() {
      <p>You have {remainingAmount} kr left for you savings goal</p>
       {goalReached && (
       <div className= "goal-celebration">
-        <span className= "celebration-emoji">ðŸŒ¸</span>
+        <span className= "celebration-emoji">🌸</span>
         <h2>Good job!</h2>
         <p>You have reached your savings goal!</p>
         <button type="button" onClick={startnewgoal}>
