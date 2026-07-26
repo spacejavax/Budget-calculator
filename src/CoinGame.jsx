@@ -26,6 +26,41 @@ useEffect(() => {
   const itemsAtPlayer = fallingItems.items.filter(
     (item) => item.y >= 80
   )
+  if(itemsAtPlayer.length ===0) {
+    return
+  }
+  let scoreAdd= 0
+  let livesLost = 0
+  itemsAtPlayer.forEach((item) => {
+    const horizontalDistance =
+    Math.abs(item.x - playerX)
+    const touchingPlayer =
+    horizontalDistance < 15
+
+    if (item.type === 'coin' && touchingPlayer) {
+      scoreAdd = scoreAdd + 1
+    }
+    if (item.type === `bomb` && touchingPlayer) {
+      livesLost = livesLost + 1
+    }
+  })
+
+  if (scoreAdd > 0 ) {
+    setscore((currentscore) =>
+      currentscore + scoreAdd
+  )
+  }
+
+  if (livesLost > 0) {
+    setlives((currentLives) =>
+      currentLives - livesLost
+  }
+
+  useEffect(() => {
+    if (gameover) {
+      return
+    }
+
   const spawnTimer = setInterval(() => {
     const randomType =
   Math.random() < 0.25 ? `bomb` : `coin`
@@ -42,24 +77,14 @@ useEffect(() => {
 }, 900)
 
 return () => clearInterval(spawnTimer)
-}, [gameover])
-
-  function restartGame() {
-    setplayerX(50)
-    setcoinx(Math.floor(Math.random() * 80) + 10)
-    setcoiny(0)
-    setlives(3)
-    setscore(0)
-    setgameover(false)
-    setcoinvisible(true)
-    setFallingItems([])
-  }
+}, [gameover]
 
   useEffect(() => {
     if (gameover) {
       return
     }
-    const movementTimer = setInterval(() => {
+
+   const movementTimer = setInterval(() => {
       setFallingItems((currentItems) =>
         currentItems.map((item) => ({
           ...item,
@@ -68,15 +93,24 @@ return () => clearInterval(spawnTimer)
       )
     }, 50)
     return () => clearInterval(movementTimer)
-  }, [gameover])        
-    
+  }, [gameover])     
 
+      
  useEffect(() => {
     if (lives === 0) {
     console.log("Game Over!") 
     setgameover(true)
     }
   }, [lives])
+
+  function restartGame() {
+    setplayerX(50)
+    setlives(3)
+    setscore(0)
+    setgameover(false)
+    setFallingItems([])
+  }
+      
 
 return (
     <div className="coin-game">
