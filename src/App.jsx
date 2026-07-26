@@ -7,7 +7,7 @@ import CoinGame from './CoinGame'
 
 function App() {
   const[completedGoals, setCompletedGoals] = useState(0)
-  const [coingGameUnlocked, setCoinGameUnlocked] = useState(false)
+  const [coinGameUnlocked, setCoinGameUnlocked] = useState(false)
   const [coinGameStarted, setCoinGameStarted] = useState(false)
   const [monthlyIncome, setMonthlyIncome] = useState('')
   const [monthlyExpenses, setMonthlyExpenses] = useState('')
@@ -32,7 +32,7 @@ function App() {
   const goalReached = 
   Number(targetAmount) > 0 && totalSaved >= Number(targetAmount)
   const piggyGameAvailable = completedGoals >= 1 || goalReached
-  const snakeUnlocked = completedGoals >= 2 || (completedGoals <= 1 && goalReached)
+  const snakeUnlocked = completedGoals >= 2 || (completedGoals >= 1 && goalReached)
   const wasGoalReached = useRef(false)
   useEffect(() => { if (goalReached && !wasGoalReached.current) {
       confetti({
