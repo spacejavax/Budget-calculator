@@ -1,129 +1,215 @@
-import {useEffect, useState} from 'react'
+﻿import { useEffect, useState } from 'react'
 
 function CoinGame() {
-// All variables needed in the game
-const [playerX, setplayerX] = useState(50)
-const [coinx, setcoinx] = useState(50)
-const [coiny, setcoiny] = useState(0)
-const [lives, setlives] = useState(3)
-const [score, setscore] = useState(0)
-const [gameover, setgameover] = useState(false)
-const [coinvisible, setcoinvisible] = useState(true)
+  // Game variables
+  const [playerX, setPlayerX] = useState(50)
+  const [lives, setLives] = useState(3)
+  const [score, setScore] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
+  const [fallingItems, setFallingItems] = useState([])
 
-// The players position; can move with mouse
-function handleMouseMove(event) {
+  // Moves the player horizontally with the mouse
+  function handleMouseMove(event) {
     const gameArea = event.currentTarget.getBoundingClientRect()
-    const mouseXInsideGameArea = event.clientX - gameArea.left
-    const newplayerX = (mouseXInsideGameArea / gameArea.width) * 100
-    const clampedX= Math.max(5, Math.min(newplayerX, 95))
-    setplayerX(clampedX)
-}
 
-useEffect(() => {
-    if (gameover || !coinvisible) {
-      return
-    }
-    const gameLoop = setInterval(() => {
-      setcoiny((currenty) => currenty + 2)
-    }, 50)
-    return() => clearInterval(gameLoop)
-  }, [gameover, coinvisible])
+    const mouseXInsideGameArea =
+      event.clientX - gameArea.left
 
-  useEffect(() => {
-    if (coiny < 80 || gameover || !coinvisible) {
-      return
-    }
-  const horizontalDistance = Math.abs(coinx - playerX)
-  const coinCaught = horizontalDistance < 15
+    const newPlayerX =
+      (mouseXInsideGameArea / gameArea.width) * 100
 
-  if (coinCaught) {
-    setscore((currentScore) => currentScore + 1)
-    setcoinvisible(false)
-    setTimeout(() => {
-    setcoinx(Math.floor(Math.random() * 80) + 10)
-    setcoiny(0)
-    setcoinvisible(true)
-   }, 1000)
-  } else {
-    setlives((currentLives) => Math.max(currentLives - 1, 0))
-  
-    setcoiny(0)
-    setcoinx(Math.floor(Math.random() * 80) + 10)}},
-[coiny, coinx, playerX, gameover, coinvisible])
+    // Stops the player from leaving the game area
+    const clampedX = Math.max(
+      5,
+      Math.min(newPlayerX, 95)
+    )
 
-  function restartGame() {
-    setplayerX(50)
-    setcoinvisible(Math.floor(Math.random() * 80) + 10)
-    setcoiny(0)
-    setlives(3)
-    setscore(0)
-    setgameover(false)
-    setcoinvisible(true)
+    setPlayerX(clampedX)
   }
 
- useEffect(() => {
+  // Creates a new coin or bomb every 900 milliseconds
+  useEffect(() => {
+    if (gameOver) {
+      return
+    }
+
+    const spawnTimer = setInterval(() => {
+      // 25% chance of a bomb and 75% chance of a coin
+      const randomType =
+        Math.random() < 0.25 ? 'bomb' : 'coin'
+
+      const newItem = {
+        id: Date.now() + Math.random(),
+        type: randomType,
+        x: Math.floor(Math.random() * 80) + 10,
+        y: 0,
+      }
+
+      setFallingItems((currentItems) => [
+        ...currentItems,
+        newItem,
+      ])
+    }, 900)
+
+    return () => clearInterval(spawnTimer)
+  }, [gameOver])
+
+  // Moves all coins and bombs downward
+  useEffect(() => {
+    if (gameOver) {
+      return
+    }
+
+    const movementTimer = setInterval(() => {
+      setFallingItems((currentItems) =>
+        currentItems.map((item) => ({
+          ...item,
+          y: item.y + 2,
+        }))
+      )
+    }, 50)
+
+    return () => clearInterval(movementTimer)
+  }, [gameOver])
+
+  // Checks whether an item touches the player
+  useEffect(() => {
+    if (gameOver) {
+      return
+    }
+
+    let scoreAdded = 0
+    let livesLost = 0
+    const itemsToRemove = []
+
+    fallingItems.forEach((item) => {
+      const horizontalDistance = Math.abs(
+        item.x - playerX
+      )
+
+      const touchingPig = 
+      item.y >= 80 &&
+      item.y < 90 && 
+      horizontalDistance < 15
+
+      const touchingGrass = item.y >= 90
+
+      if (item.type === 'coin') {
+        if(touchingPig) {
+        scoreAdded = scoreAdded + 1
+        itemsToRemove.push(item.id)
+      } else if (touchingGrass) {
+        livesLost = livesLost + 1
+        itemsToRemove.push(item.id)
+      }
+    }
+      if (item.type === 'bomb') {
+        if (touchingPig) {
+        livesLost = livesLost + 1
+        itemsToRemove.push(item.id)
+      } else if (touchingGrass) {
+        itemsToRemove.push(item.id)
+      }
+    }
+    
+    })
+
+    if (scoreAdded > 0) {
+      setScore(
+        (currentScore) => currentScore + scoreAdded
+      )
+    }
+
+    if (livesLost > 0) {
+      setLives((currentLives) =>
+        Math.max(currentLives - livesLost, 0)
+      )
+    }
+
+    if (itemsToRemove.length > 0) {
+      setFallingItems((currentItems) => 
+        currentItems.filter(
+          (item) => !itemsToRemove.includes(item.id)))
+        }
+      }, [fallingItems, playerX, gameOver]) 
+
+  // Ends the game when the player has no lives
+  useEffect(() => {
     if (lives === 0) {
-    console.log("Game Over!") 
-    setgameover(true)
+      setGameOver(true)
     }
   }, [lives])
 
-return (
+  // Resets all game variables
+  function restartGame() {
+    setPlayerX(50)
+    setLives(3)
+    setScore(0)
+    setGameOver(false)
+    setFallingItems([])
+  }
+
+  return (
     <div className="coin-game">
-       <div className="game-area"
-    onMouseMove={handleMouseMove}
-    >
-      <div className="game-stats">
-        <div className="stat-box">
-          ⭐ Score: {score}
+      <div
+        className="game-area"
+        onMouseMove={handleMouseMove}
+      >
+        <div className="game-stats">
+          <div className="stat-box">
+            ⭐ Score: {score}
           </div>
-    
+
           <div className="stat-box life-hearts">
-          {'❤️'.repeat(lives)}
+            {'❤️'.repeat(lives)}
+          </div>
         </div>
-   </div>
 
-    {gameover ? (
-      <div className="game-over">
-        <h2>Game Over!</h2>
-        <p className="final-score" >
-          Your score: {score}
-          </p>
-        <button type="button" onClick={restartGame}>
-        Play again
-        </button>
-        </div>
-         ) : (
-        <>
-    {coinvisible && (
-   <div
-    className="coin"
-      style={{
-        left: `${coinx}%`,
-        top: `${coiny}%`,
-    }}
-    >
-      🪙
+        {gameOver ? (
+          <div className="game-over">
+            <h2>Game Over!</h2>
+
+            <p className="final-score">
+              Your score: {score}
+            </p>
+
+            <button
+              type="button"
+              onClick={restartGame}
+            >
+              Play again
+            </button>
+          </div>
+        ) : (
+          <>
+            {fallingItems.map((item) => (
+              <div
+                key={item.id}
+                className="falling-item"
+                style={{
+                  left: `${item.x}%`,
+                  top: `${item.y}%`,
+                }}
+              >
+                {item.type === 'coin' ? '🪙' : '💣'}
+              </div>
+            ))}
+
+            <div
+              className="player"
+              style={{
+                left: `${playerX}%`,
+              }}
+            >
+              🐷
+            </div>
+          </>
+        )}
+
+        <div className="grass"></div>
+      </div>
     </div>
-    )}
-
-    <div
-      className="player"
-      style={{
-        left: `${playerX}%`,
-      }}
-    >
-      🐷
-    </div>
-    </>
-   )}
-   <div className="grass"></div>
-  
-  </div>
-
-  </div>
-)
+  )
 }
-
 
 export default CoinGame

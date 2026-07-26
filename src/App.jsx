@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState } from 'react'
+﻿import {useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import './App.css'
 import CoinGame from './CoinGame'
@@ -51,10 +51,6 @@ function App() {
     if (amount <=0) {
       return}
     const newSaving = {
-    id: Date.now(),
-    amount: amount,
-    date: new Date().toLocaleDateString('sv-SE'),}
-    const newSaving2 = {
       id: Date.now(),
       amount: amount,
       date: new Date().toLocaleDateString(`sv-SE`),
@@ -216,7 +212,9 @@ function App() {
       <tr key={saving.id}>
         <td>{saving.date}</td>
         <td>{saving.amount} kr</td>
+        <td>{saving.moneyAfterExpenses} kr </td>
       </tr>
+
     ))}
   </tbody>
   </table>
@@ -237,7 +235,7 @@ function App() {
   </div>
   ) : (
     <div className="game-locked">
-      <span className="lock-icon">🔒</span>
+      <span className="lock-icon">ðŸ”’</span>
     <p>Reach your savings goal to unlock the game!</p>
     </div>
   )}
