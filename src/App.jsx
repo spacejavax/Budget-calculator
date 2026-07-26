@@ -230,57 +230,56 @@ function App() {
     </aside>
   </div>
 <div className="game-section">
-  {!piggyGameAvailable ? ( 
+  <div className = "games-column">
+     {!piggyGameAvailable ? ( 
     <div className="game-locked">
       <span className="lock-icon">🔒</span>
       <p>Reach your first savings goal to unlock the Piggy Coin game!</p>
     </div>
-    ) : ( 
-      <>
-      {!coinGameUnlocked ? (
-      <div className="game-locked">
-        <span className="lock-icon">🔓</span>
-        <button type="button"
-        onClick={() => setCoinGameUnlocked(true)}
-        >
-          Unlock Piggy Coin Game
-        </button>
-        </div>
-       ) : !coinGameStarted ? (
-        <div className= "unlocked-games">
-          <p>🐷 Piggy Coin Game Unlocked</p>
-          <button type="button" onClick={() => setCoinGameStarted(true)}
+    ) : !coinGameUnlocked ? (
+        <div className="game-locked">
+          <span className="lock-icon">🔓</span>
+
+          <button type="button"
+          onClick={() => setCoinGameUnlocked(true)}
           >
-            Start Game
+            Unlock Piggy Coin Game
           </button>
           </div>
-       ) : (
+        ) : !coinGameStarted ? (
+          <div className= "unlocked-games">
+            <p>🐷 Piggy Coin Game Unlocked</p>
+            <button type="button" onClick={() => setCoinGameStarted(true)}
+            >
+              Start Game
+            </button>
+            </div>
+        ) : (
+          <div className="unlocked-games">
+            <CoinGame />
+            </div>
+        )}
+      {snakeUnlocked ? (
         <div className="unlocked-games">
-          <CoinGame />
-          </div>
-       )}
-    {snakeUnlocked ? (
-      <div className="unlocked-games">
-        <p>🐍Snake unlocked</p>
-      <iframe
-        src="/game/index.html"
-        title="snake"
-        width="400"
-        height="400"
-        style={{border:"none"}}
-    />
-    </div>
-    ) : (
-      <div className="game-locked">
-        <span className="lock-icon">🔒</span>
-        <p>Reach your second savings goal to unlock snake</p>
+          <p>🐍Snake unlocked</p>
+        <iframe
+          src="/game/index.html"
+          title="snake"
+          width="400"
+          height="400"
+          style={{border:"none"}}
+      />
       </div>
-    )}
-    </>
-    )}
-  </div>
-  </div>
-  )
+      ) : (
+        <div className="game-locked">
+          <span className="lock-icon">🔒</span>
+          <p>Reach your second savings goal to unlock snake</p>
+        </div>
+      )}
+  </div> 
+</div>
+</div>
+)
 }
 
 export default App 
