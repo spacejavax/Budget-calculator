@@ -59,23 +59,8 @@ async def custom_site():
 
     main = appdir / "assets" / "main.py"
 
-    # TODO: test for window.webkitAudioContext and block aio loop until gesture if accessing media manager play
-    # before a gesture is recorded ( touch or click )
-
-    # test/wait user media interaction
-    if not platform.window.MM.UME:
-
-        # now that apk is mounted we have access to font cache
-        # but we need to fill __file__ that is not yet set
-        __import__(__name__).__file__ = main
-
-        # now make a prompt
-        msg  = "Ready to start ! Please click/touch page"
-        platform.window.infobox.innerText = msg
-        print("\n"*4, f"    * Waiting for media user engagement. {msg} *" , "\n"*4)
-
-        while not platform.window.MM.UME:
-            await asyncio.sleep(.1)
+    # This game has no audio or media APIs, so it does not need to wait for a
+    # user gesture. That wait looks like an endless loader when embedded.
 
     # start async top level machinery if not started and add a console in any case if requested.
     await TopLevel_async_handler.start_toplevel(platform.shell, console=window.python.config.debug)
@@ -156,9 +141,9 @@ config = {
     cdn : "https://pygame-web.github.io/cdn/0.9.3/",
     autorun : 0,
     PYBUILD : "3.12",
-    fb_ar   :  1.77,
-    fb_width : "1280",
-    fb_height : "720"
+    fb_ar   :  1,
+    fb_width : "400",
+    fb_height : "400"
 }
 
 function show_infobox() {
@@ -307,8 +292,8 @@ height="1px"
     </canvas>
 
     <canvas class="emscripten" id="canvas3d"
-width="1280px"
-height="720px"
+width="400px"
+height="400px"
     oncontextmenu="event.preventDefault()" tabindex=1 hidden>
     </canvas>
 

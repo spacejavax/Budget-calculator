@@ -14,7 +14,6 @@ async def main():
 
     snake = [pygame.Rect(10, 200, size, size)]
 
-
     darkpink = (197, 61, 105)
     white = (255, 255, 255)
     running = True
