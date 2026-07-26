@@ -9,6 +9,7 @@ const [lives, setlives] = useState(3)
 const [score, setscore] = useState(0)
 const [gameover, setgameover] = useState(false)
 const [coinvisible, setcoinvisible] = useState(true)
+const [fallingItems, setFallingItems] = useState([])
 
 // The players position; can move with mouse
 function handleMouseMove(event) {
@@ -51,15 +52,56 @@ useEffect(() => {
     setcoinx(Math.floor(Math.random() * 80) + 10)}},
 [coiny, coinx, playerX, gameover, coinvisible])
 
+useEffect(() => {
+  if (gameover) {
+    return
+  }
+  const spawnTimer = setInterval(() => {
+    const randomType =
+  Math.random() < 0.25 ? `bomb` : `coin`
+  const newItem = {
+    id: Date.now() + Math.random(),
+    type: randomType,
+    x: Math.floor(Math.random() * 80) + 10,
+    y: 0,
+  }
+  setFallingItems((currentItems) => [
+    ...currentItems,
+    newItem,
+
+  ])
+}, 900)
+
+ return () => clearInterval(spawnTimer)
+}, [gameover])
+
+
   function restartGame() {
     setplayerX(50)
-    setcoinvisible(Math.floor(Math.random() * 80) + 10)
+    setcoinx(Math.floor(Math.random() * 80) + 10)
     setcoiny(0)
     setlives(3)
     setscore(0)
     setgameover(false)
     setcoinvisible(true)
+    setFallingItems([])
   }
+
+  useEffect(() => {
+    if (gameover) {
+      return
+    }
+    const movementTimer = setInterval(() => {
+      setFallingItems((currentItems) =>
+        currentItems.map((item) => ({
+          ...item,
+        y: item.y + 2,
+        }))
+      )
+    }, 50)
+    return () => clearInterval(movementTimer)
+  }, [gameover])        
+    
 
  useEffect(() => {
     if (lives === 0) {
@@ -95,17 +137,18 @@ return (
         </div>
          ) : (
         <>
-    {coinvisible && (
-   <div
-    className="coin"
-      style={{
-        left: `${coinx}%`,
-        top: `${coiny}%`,
-    }}
-    >
-      🪙
-    </div>
-    )}
+      {fallingItems.map((item) => (
+        <div
+        key={item.id}
+        className="falling-item"
+        style ={{
+          left: `${item.x}%`,
+          top: `${item.y}%`,
+        }}
+        >
+          {item.type === `coin` ? `🪙` : `💣`}
+          </div>
+      ))}
 
     <div
       className="player"

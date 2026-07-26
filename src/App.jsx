@@ -216,7 +216,9 @@ function App() {
       <tr key={saving.id}>
         <td>{saving.date}</td>
         <td>{saving.amount} kr</td>
+        <td>{saving.moneyAfterExpenses} kr </td>
       </tr>
+
     ))}
   </tbody>
   </table>
