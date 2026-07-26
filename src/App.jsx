@@ -6,7 +6,9 @@ import CoinGame from './CoinGame'
 
 
 function App() {
-  const[snakeUnlocked, setSnakeUnlocked] = useState(false)
+  const[completedGoals, setCompletedGoals] = useState(0)
+  const [coinGameUnlocked, setCoinGameUnlocked] = useState(false)
+  const [coinGameStarted, setCoinGameStarted] = useState(false)
   const [monthlyIncome, setMonthlyIncome] = useState('')
   const [monthlyExpenses, setMonthlyExpenses] = useState('')
   const [targetAmount, setTargetAmount] = useState(
@@ -29,6 +31,8 @@ function App() {
     Number(monthlyIncome || 0) - Number(monthlyExpenses || 0)
   const goalReached = 
   Number(targetAmount) > 0 && totalSaved >= Number(targetAmount)
+  const piggyGameAvailable = completedGoals >= 1 || goalReached
+  const snakeUnlocked = completedGoals >= 2 || (completedGoals >= 1 && goalReached)
   const wasGoalReached = useRef(false)
   useEffect(() => { if (goalReached && !wasGoalReached.current) {
       confetti({
@@ -55,7 +59,7 @@ function App() {
       id: Date.now(),
       amount: amount,
       date: new Date().toLocaleDateString(`sv-SE`),
-      moneyAfterExenses: moneyAfterExpenses,
+      moneyAfterExpenses: moneyAfterExpenses,
     }
     setSavingsHistory([...savingsHistory, newSaving])
     setSavedAmount('')}
@@ -67,6 +71,7 @@ function App() {
 }
 
   function startnewgoal() {
+    setCompletedGoals((currentGoals) => currentGoals + 1)
     setTargetAmount('')
     setSavedAmount('')
     setSavingsHistory([])
@@ -78,6 +83,9 @@ function App() {
     setTargetAmount('')
     setSavedAmount('')
     setSavingsHistory([])
+    setCompletedGoals(0)
+    setCoinGameUnlocked(false)
+    setCoinGameStarted(false)
     localStorage.removeItem('targetAmount')
     localStorage.removeItem('savingsHistory')
     wasGoalReached.current = false }
@@ -222,10 +230,38 @@ function App() {
     </aside>
   </div>
 <div className="game-section">
-  {goalReached ? ( 
-  <div className= "unlocked-games">
-    <CoinGame onUnlockSnake={() => setSnakeUnlocked(true)}/>
+  {!piggyGameAvailable ? ( 
+    <div className="game-locked">
+      <span className="lock-icon">🔒</span>
+      <p>Reach your first savings goal to unlock the Piggy Coin game!</p>
+    </div>
+    ) : ( 
+      <>
+      {!coinGameUnlocked ? (
+      <div className="game-locked">
+        <span className="lock-icon">🔓</span>
+        <button type="button"
+        onClick={() => setCoinGameUnlocked(true)}
+        >
+          Unlock Piggy Coin Game
+        </button>
+        </div>
+       ) : !coinGameStarted ? (
+        <div className= "unlocked-games">
+          <p>🐷 Piggy Coin Game Unlocked</p>
+          <button type="button" onClick={() => setCoinGameStarted(true)}
+          >
+            Start Game
+          </button>
+          </div>
+       ) : (
+        <div className="unlocked-games">
+          <CoinGame />
+          </div>
+       )}
     {snakeUnlocked ? (
+      <div className="unlocked-games">
+        <p>🐍Snake unlocked</p>
       <iframe
         src="/game/index.html"
         title="snake"
@@ -233,20 +269,16 @@ function App() {
         height="400"
         style={{border:"none"}}
     />
+    </div>
     ) : (
       <div className="game-locked">
         <span className="lock-icon">🔒</span>
-        <p>Earn 20 points in the coin game to unlock Snake</p>
+        <p>Reach your second savings goal to unlock snake</p>
       </div>
     )}
+    </>
+    )}
   </div>
-  ) : (
-    <div className="game-locked">
-      <span className="lock-icon">🔒</span>
-      <p>Reach your savings goal to unlock the game!</p>
-    </div>
-  )}
-</div>
   </div>
   )
 }
