@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState } from 'react'
+﻿import {useEffect, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import './App.css'
 import CoinGame from './CoinGame'
@@ -51,10 +51,6 @@ function App() {
     if (amount <=0) {
       return}
     const newSaving = {
-    id: Date.now(),
-    amount: amount,
-    date: new Date().toLocaleDateString('sv-SE'),}
-    const newSaving2 = {
       id: Date.now(),
       amount: amount,
       date: new Date().toLocaleDateString(`sv-SE`),
@@ -181,7 +177,7 @@ function App() {
      <p>You have {remainingAmount} kr left for you savings goal</p>
       {goalReached && (
       <div className= "goal-celebration">
-        <span className= "celebration-emoji">🌸</span>
+        <span className= "celebration-emoji">ðŸŒ¸</span>
         <h2>Good job!</h2>
         <p>You have reached your savings goal!</p>
         <button type="button" onClick={startnewgoal}>
@@ -239,7 +235,7 @@ function App() {
   </div>
   ) : (
     <div className="game-locked">
-      <span className="lock-icon">🔒</span>
+      <span className="lock-icon">ðŸ”’</span>
     <p>Reach your savings goal to unlock the game!</p>
     </div>
   )}
