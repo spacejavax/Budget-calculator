@@ -88,8 +88,8 @@ function CoinGame() {
       )
 
       const touchingPig = 
-      item.y >= 76 &&
-      item.y <90 && 
+      item.y >= 80 &&
+      item.y < 90 && 
       horizontalDistance < 15
 
       const touchingGrass = item.y >= 90
@@ -107,7 +107,7 @@ function CoinGame() {
         if (touchingPig) {
         livesLost = livesLost + 1
         itemsToRemove.push(item.id)
-      } else if  (touchinggrass) {
+      } else if (touchingGrass) {
         itemsToRemove.push(item.id)
       }
     }
@@ -126,11 +126,12 @@ function CoinGame() {
       )
     }
 
-    // Removes every item that reached the player area
-    setFallingItems((currentItems) =>
-      currentItems.filter((item) => item.y < 82)
-    )
-  }, [fallingItems, playerX, gameOver])
+    if (itemsToRemove.length > 0) {
+      setFallingItems((currentItems) => 
+        currentItems.filter(
+          (item) => !itemsToRemove.includes(item.id)))
+        }
+      }, [fallingItems, playerX, gameOver]) 
 
   // Ends the game when the player has no lives
   useEffect(() => {
