@@ -6,6 +6,7 @@ import CoinGame from './CoinGame'
 
 
 function App() {
+  const[snakeUnlocked, setSnakeUnlocked] = useState(false)
   const [monthlyIncome, setMonthlyIncome] = useState('')
   const [monthlyExpenses, setMonthlyExpenses] = useState('')
   const [targetAmount, setTargetAmount] = useState(
@@ -223,20 +224,26 @@ function App() {
 <div className="game-section">
   {goalReached ? ( 
   <div className= "unlocked-games">
-    <CoinGame /> 
-
-    <iframe
-      src="/game/index.html"
-      title="snake"
-      width="400"
-      height="400"
-      style={{border:"none"}}
+    <CoinGame onUnlockSnake={() => setSnakeUnlocked(true)}/>
+    {snakeUnlocked ? (
+      <iframe
+        src="/game/index.html"
+        title="snake"
+        width="400"
+        height="400"
+        style={{border:"none"}}
     />
+    ) : (
+      <div className="game-locked">
+        <span className="lock-icon">🔒</span>
+        <p>Earn 20 points in the coin game to unlock Snake</p>
+      </div>
+    )}
   </div>
   ) : (
     <div className="game-locked">
-      <span className="lock-icon">ðŸ”’</span>
-    <p>Reach your savings goal to unlock the game!</p>
+      <span className="lock-icon">🔒</span>
+      <p>Reach your savings goal to unlock the game!</p>
     </div>
   )}
 </div>

@@ -6,7 +6,6 @@ async def main():
     pygame.init()
     font = pygame.font.SysFont(None, 40)
     smallfont = pygame.font.SysFont(None, 28)
-    radius = 10
     screen = pygame.display.set_mode((400, 400))
     replay = pygame.Rect(55, 260, 300, 50)
 
@@ -36,16 +35,16 @@ async def main():
         
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] and directionx != 1:
             directionx =  -1
             directiony = 0
-        elif keys[pygame.K_RIGHT]:
+        elif keys[pygame.K_RIGHT] and directionx != 1:
             directionx = 1
             directiony = 0
-        elif keys[pygame.K_UP]:
+        elif keys[pygame.K_UP] and directiony != 1:
             directionx = 0
             directiony = -1
-        elif keys[pygame.K_DOWN]:
+        elif keys[pygame.K_DOWN] and directiony != -1:
             directionx = 0
             directiony = 1
         elif event.type == pygame.MOUSEBUTTONDOWN and replay:
@@ -100,4 +99,5 @@ async def main():
         await asyncio.sleep(0)
         
     pygame.quit()  
+
 asyncio.run(main())
