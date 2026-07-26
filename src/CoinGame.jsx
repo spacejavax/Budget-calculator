@@ -78,34 +78,40 @@ function CoinGame() {
       return
     }
 
-    const itemsAtPlayer = fallingItems.filter(
-      (item) => item.y >= 80
-    )
-
-    if (itemsAtPlayer.length === 0) {
-      return
-    }
-
     let scoreAdded = 0
     let livesLost = 0
+    const itemsToRemove = []
 
-    itemsAtPlayer.forEach((item) => {
+    fallingItems.forEach((item) => {
       const horizontalDistance = Math.abs(
         item.x - playerX
       )
 
-      const touchingPlayer = horizontalDistance < 15
+      const touchingPig = 
+      item.y >= 76 &&
+      item.y <90 && 
+      horizontalDistance < 15
+
+      const touchingGrass = item.y >= 90
 
       if (item.type === 'coin') {
-        if(touchingPlayer) {
+        if(touchingPig) {
         scoreAdded = scoreAdded + 1
-      } else {
+        itemsToRemove.push(item.id)
+      } else if (touchingGrass) {
         livesLost = livesLost + 1
+        itemsToRemove.push(item.id)
       }
     }
-      if (item.type === 'bomb' && touchingPlayer) {
+      if (item.type === 'bomb') {
+        if (touchingPig) {
         livesLost = livesLost + 1
+        itemsToRemove.push(item.id)
+      } else if  (touchinggrass) {
+        itemsToRemove.push(item.id)
       }
+    }
+    
     })
 
     if (scoreAdded > 0) {
@@ -122,7 +128,7 @@ function CoinGame() {
 
     // Removes every item that reached the player area
     setFallingItems((currentItems) =>
-      currentItems.filter((item) => item.y < 80)
+      currentItems.filter((item) => item.y < 82)
     )
   }, [fallingItems, playerX, gameOver])
 
