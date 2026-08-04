@@ -50,6 +50,9 @@ It also hard to keep track of all variables I had defined, when I tried to write
 
 My friend also tried to create a game in Pygame to later import to the React Website using Pygbag, but it did not end up working. Despite that the Pygbag game worked on her own computer, it just kept loading in the React website without actually launching. 
 
+Second submission:
+Hardest part was making so that the games unlocked after each new goal. The pygame unlocked when the piggy game unlocks.
+
 
 ## AI DISCLOSURE
 We used AI to understand CSS, HTML, and Javascript the underlying logic and structure. 
@@ -61,3 +64,4 @@ We used AI to understand CSS, HTML, and Javascript the underlying logic and stru
 
 ## Demolink
 https://budget-calculator-topaz.vercel.app/
+
