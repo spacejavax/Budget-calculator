@@ -266,7 +266,7 @@ function App() {
           </button>
           </div>
         ) : !coinGameStarted ? (
-          <div className= "unlocked-games">
+          <div className= "game-locked">
             <p>🐷 Piggy Coin Game Unlocked</p>
             <button type="button" onClick={() => setCoinGameStarted(true)}
             >
@@ -294,7 +294,7 @@ function App() {
             </button>
             </div>
             ) : !snakeGameStarted ? (
-              <div className="unlocked-games">
+              <div className="game-locked">
             <p>🐍Snake unlocked</p>
             <button
             type="button"
