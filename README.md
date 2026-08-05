@@ -43,6 +43,8 @@ First we created a react project using vite. I worked on the budget calc, while 
 
 My friend started by trying to create a game using Pygbag, that she hoped would be able to get imported into the React Website. The game is still available under the folder 'gamee', but we could not make it launch properly in the website. We therefore deleted that game, and developed a new jumping game were the character jumps to avoid obstacles. 
 
+Second submission:
+Hi! So far we have a budget calculator, with reset everything button, undo last saving button and new goal button. What is new is the table with money after expenses, date and savings columns. Also I have created a piggy coin game!! My friend worked on the python snake game (she insisted on using python instead of javascript. I tried to convince her that it would look out of place, but she did not listen lol.) 
 
 ## Challenges
 Me and my friend did not understand the pull and push function in Github desktop at the beginning. Since we are working on the same project we had to pull each others changes. This made some bugs ive already fixed reappear again as I pulled her code. One time I tried to copy her code into my css and it caused us some problems. The calculator appeared after the background and some texts disappeared. 
@@ -51,11 +53,11 @@ It also hard to keep track of all variables I had defined, when I tried to write
 My friend also tried to create a game in Pygame to later import to the React Website using Pygbag, but it did not end up working. Despite that the Pygbag game worked on her own computer, it just kept loading in the React website without actually launching. 
 
 Second submission:
-Hardest part was making so that the games unlocked after each new goal. The pygame unlocked when the piggy game unlocks.
+This time it was importing my friends python game. Also changing whole chunks of code so that the piggy game unlocked after reaching the saving goal, and that the python game unlocked AFTER the piggy game when reaching the second saving goal. On the first try, neither unlocked. Second try both unlocked after reaching the first savings goal. Also her python game did not work in our local host (it was loading), but it worked on vercel so we wasted a lot of time trying to figure out why it did not work. Second hardest thing was adding code so that the piggy game had a unlock game button and then a start game button, so that it did not start DIRECTLY after you reach the savings goal. 
 
 
 ## AI DISCLOSURE
-We used AI to understand CSS, HTML, and Javascript the underlying logic and structure. 
+We used AI to understand CSS, HTML, and Javascript the underlying logic and structure. Also we asked AI to debug when we really could not figure out what was wrong. 
 
 ## Screenshots!!!
 1. ![alt text](<Skärmbild 2026-07-25 025118.png>)

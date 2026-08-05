@@ -48,6 +48,19 @@ function PacMan() {
     return (
         <div className="pacman-game">
             <div className="pacman-board">
+                {maze.map((row, y) =>
+                row.map((cell, x) => (
+                    <div
+                    key= {`%{x}-&{y}`}
+                    className={cell === 1 ? "wall" : "path"}
+                    style={{
+                    left:`%(x * 10}%`,
+                    top:`%{y * 10}%`,
+                    }}
+                    />
+                ))
+            )}
+                )
                 <div className="pacman-player"
                 style={{
                     left: `${playerX * 10}%`,

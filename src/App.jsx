@@ -6,7 +6,10 @@ import CoinGame from './CoinGame'
 
 
 function App() {
-  const[completedGoals, setCompletedGoals] = useState(0)
+  const[completedGoals, setCompletedGoals] = useState(() => {
+    return Number(localStorage.getItem(`completedGoals`)) || 0})
+  const [snakeGameStarted, setSnakeGameStarted] = useState(false)
+  
   const [coinGameUnlocked, setCoinGameUnlocked] = useState(false)
   const [coinGameStarted, setCoinGameStarted] = useState(false)
   const [monthlyIncome, setMonthlyIncome] = useState('')
@@ -50,6 +53,10 @@ function App() {
           JSON.stringify(savingsHistory))}, [savingsHistory])
       useEffect(() => {
         localStorage.setItem('targetAmount', targetAmount)}, [targetAmount])
+      useEffect(() => {
+        localStorage.setItem(`completedGoals`, completedGoals)
+      }, [completedGoals])
+      
 
   function addSaving() {
     const amount = Number(savedAmount)
@@ -86,9 +93,12 @@ function App() {
     setCompletedGoals(0)
     setCoinGameUnlocked(false)
     setCoinGameStarted(false)
+    setSnakeGameStarted(false)
     localStorage.removeItem('targetAmount')
     localStorage.removeItem('savingsHistory')
+    localStorage.removeItem(`completedGoals`)
     wasGoalReached.current = false }
+
   
 
   return (
@@ -262,6 +272,14 @@ function App() {
       {snakeUnlocked ? (
         <div className="unlocked-games">
           <p>🐍Snake unlocked</p>
+          {!snakeGameStarted ? (
+            <button
+            type="button"
+            onClick={() => setSnakeGameStarted(true)}
+            >
+              Start snake game
+            </button>
+            ):(
         <iframe
           src="/game/index.html"
           title="snake"
@@ -269,6 +287,7 @@ function App() {
           height="400"
           style={{border:"none"}}
       />
+            )}
       </div>
       ) : (
         <div className="game-locked">
