@@ -290,7 +290,7 @@ function App() {
           type="button"
           onClick={() => setSnakeGameUnlocked(true)}
           >
-            Unlock game
+            Unlock snake game
             </button>
             </div>
             ) : !snakeGameStarted ? (
