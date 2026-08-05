@@ -55,6 +55,8 @@ My friend also tried to create a game in Pygame to later import to the React Web
 Second submission:
 This time it was importing my friends python game. Also changing whole chunks of code so that the piggy game unlocked after reaching the saving goal, and that the python game unlocked AFTER the piggy game when reaching the second saving goal. On the first try, neither unlocked. Second try both unlocked after reaching the first savings goal. Also her python game did not work in our local host (it was loading), but it worked on vercel so we wasted a lot of time trying to figure out why it did not work. Second hardest thing was adding code so that the piggy game had a unlock game button and then a start game button, so that it did not start DIRECTLY after you reach the savings goal. 
 
+I did the same with the snake game. It was also kinda challenging but this time it went smoother!!! Im super happy I think it is ready for review now.
+
 
 ## AI DISCLOSURE
 We used AI to understand CSS, HTML, and Javascript the underlying logic and structure. Also we asked AI to debug when we really could not figure out what was wrong. 
@@ -63,6 +65,11 @@ We used AI to understand CSS, HTML, and Javascript the underlying logic and stru
 1. ![alt text](<Skärmbild 2026-07-25 025118.png>)
 2. ![alt text](<Skärmbild 2026-07-25 025132.png>) 
 3. ![alt text](<Skärmbild 2026-07-24 190739.png>)
+NEW!
+1. ![alt text](<Skärmbild 2026-08-05 212250.png>)
+2. ![alt text](<Skärmbild 2026-08-05 212333.png>) 
+3. ![alt text](<Skärmbild 2026-08-05 212314.png>) 
+4. ![alt text](<Skärmbild 2026-08-05 212258.png>)
 
 ## Demolink
 https://budget-calculator-topaz.vercel.app/
