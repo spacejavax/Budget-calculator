@@ -284,7 +284,7 @@ function App() {
           <p>Reach your second savings goal to unlock Snake!</p>
           </div>
           ) : !snakeGameUnlocked ? (
-            <div className="game-unlocked">
+            <div className="game-locked">
               <span className="lock-icon">🔓</span>
           <button
           type="button"
