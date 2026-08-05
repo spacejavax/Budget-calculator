@@ -9,7 +9,9 @@ function App() {
   const[completedGoals, setCompletedGoals] = useState(() => {
     return Number(localStorage.getItem(`completedGoals`)) || 0})
   const [snakeGameStarted, setSnakeGameStarted] = useState(false)
-  
+  const [snakeGameUnlocked, setSnakeGameUnlocked] = useState(() => {
+  return localStorage.getItem('snakeGameUnlocked') === 'true'
+})
   const [coinGameUnlocked, setCoinGameUnlocked] = useState(false)
   const [coinGameStarted, setCoinGameStarted] = useState(false)
   const [monthlyIncome, setMonthlyIncome] = useState('')
@@ -35,7 +37,7 @@ function App() {
   const goalReached = 
   Number(targetAmount) > 0 && totalSaved >= Number(targetAmount)
   const piggyGameAvailable = completedGoals >= 1 || goalReached
-  const snakeUnlocked = completedGoals >= 2 || (completedGoals >= 1 && goalReached)
+  const snakeGameAvailable = completedGoals >= 2 || (completedGoals >= 1 && goalReached)
   const wasGoalReached = useRef(false)
   useEffect(() => { if (goalReached && !wasGoalReached.current) {
       confetti({
@@ -56,6 +58,11 @@ function App() {
       useEffect(() => {
         localStorage.setItem(`completedGoals`, completedGoals)
       }, [completedGoals])
+      useEffect(() => {
+        localStorage.setItem(
+          `snakeGameUnlocked`,
+          JSON.stringify(snakeGameUnlocked))
+      }, [snakeGameUnlocked])
       
 
   function addSaving() {
@@ -93,7 +100,9 @@ function App() {
     setCompletedGoals(0)
     setCoinGameUnlocked(false)
     setCoinGameStarted(false)
+    setSnakeGameUnlocked(false)
     setSnakeGameStarted(false)
+    localStorage.removeItem(`snakeGameUnlocked`)
     localStorage.removeItem('targetAmount')
     localStorage.removeItem('savingsHistory')
     localStorage.removeItem(`completedGoals`)
@@ -269,17 +278,33 @@ function App() {
             <CoinGame />
             </div>
         )}
-      {snakeUnlocked ? (
-        <div className="unlocked-games">
-          <p>🐍Snake unlocked</p>
-          {!snakeGameStarted ? (
+      {!snakeGameAvailable ? (
+         <div className="game-locked">
+          <span className="lock-icon">🔒</span>
+          <p>Reach your second savings goal to unlock Snake!</p>
+          </div>
+          ) : !snakeGameUnlocked ? (
+            <div className="game-unlocked">
+              <span className="lock-icon">🔓</span>
+          <button
+          type="button"
+          onClick={() => setSnakeGameUnlocked(true)}
+          >
+            Unlock game
+            </button>
+            </div>
+            ) : !snakeGameStarted ? (
+              <div className="unlocked-games">
+            <p>🐍Snake unlocked</p>
             <button
             type="button"
             onClick={() => setSnakeGameStarted(true)}
             >
-              Start snake game
+              Start game
             </button>
+            </div>
             ):(
+           <div className="unlocked-games">
         <iframe
           src="/game/index.html"
           title="snake"
@@ -287,14 +312,8 @@ function App() {
           height="400"
           style={{border:"none"}}
       />
-            )}
       </div>
-      ) : (
-        <div className="game-locked">
-          <span className="lock-icon">🔒</span>
-          <p>Reach your second savings goal to unlock snake</p>
-        </div>
-      )}
+            )}
   </div> 
 </div>
 </div>
